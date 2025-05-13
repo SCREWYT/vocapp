@@ -1,5 +1,10 @@
-BEGIN TRANSACTION;
-DROP TABLE IF EXISTS todo_list;
-DROP TABLE IF EXISTS list;
-DROP TABLE IF EXISTS todo;
-COMMIT;
+-- DROP TABLE
+
+-- Löschen der Vokabellisten-Tabelle
+-- DROP TABLE IF EXISTS list;
+
+-- Löschen der Vokabeln-Tabelle
+-- DROP TABLE IF EXISTS vocab;
+
+-- Löschen der Tabelle für die Zuordnung von Vokabellisten und Vokabeln
+-- DROP TABLE IF EXISTS list_vocab;

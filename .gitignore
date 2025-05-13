@@ -1,8 +1,8 @@
-# Ignore __pycache__ folder (precompiled Python code)
+# Ignoriere den __pycache__-Ordner (vorkompilierter Python-Code)
 __pycache__/
 
-# Ignore venv folder (Python Virtual Environment)
-venv/
+# Ignoriere den Ordner für die virtuelle Umgebung
+virtualenvironment/
 
-# Ignore instance folder (used by Flask web app, e.g., for SQLite database)
+# Ignoriere den instance-Ordner (wird von Flask genutzt, z. B. für die SQLite-Datenbank)
 instance/

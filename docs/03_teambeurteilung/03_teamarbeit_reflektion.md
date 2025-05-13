@@ -1,7 +1,7 @@
 ---
-title: Peer Review
-parent: Team Evaluation
-nav_order: 3
+title: Reflektion der Teamarbeit
+parent: 03_teambeurteilung
+nav_order: 6
 ---
 
 {: .label }

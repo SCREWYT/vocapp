@@ -1,19 +1,15 @@
-BEGIN TRANSACTION;
-DELETE from todo;
-DELETE from list;
-DELETE from sqlite_sequence;
-INSERT INTO todo (complete, description) VALUES (TRUE, "Get some food");
-INSERT INTO todo (description) VALUES ("Drive the bike more often");
-INSERT INTO todo (description) VALUES ("Implement web app");
-INSERT INTO todo (complete, description) VALUES (TRUE, "Call mom");
-INSERT INTO todo (complete, description) VALUES (TRUE, "Clean up");
-INSERT INTO list (name) VALUES ("Life");
-INSERT INTO list (name) VALUES ("Work");
-INSERT INTO list (name) VALUES ("Family");
-INSERT INTO todo_list (todo_id, list_id) VALUES (1, 1);
-INSERT INTO todo_list (todo_id, list_id) VALUES (2, 1);
-INSERT INTO todo_list (todo_id, list_id) VALUES (2, 2);
-INSERT INTO todo_list (todo_id, list_id) VALUES (3, 2);
-INSERT INTO todo_list (todo_id, list_id) VALUES (4, 3);
-INSERT INTO todo_list (todo_id, list_id) VALUES (5, 3);
-COMMIT;
+-- INSERT INTO (Beispieldaten)
+
+-- Einfügen von Beispiel-Vokabellisten
+-- INSERT INTO list (name) VALUES ("English Vocabulary");
+-- INSERT INTO list (name) VALUES ("German Vocabulary");
+
+-- Einfügen von Beispiel-Vokabeln
+-- INSERT INTO vocab (word, translation) VALUES ("apple", "Apfel");
+-- INSERT INTO vocab (word, translation) VALUES ("book", "Buch");
+-- INSERT INTO vocab (word, translation) VALUES ("house", "Haus");
+
+-- Zuordnen von Vokabeln zu Vokabellisten
+-- INSERT INTO list_vocab (list_id, vocab_id) VALUES (1, 1); -- "apple" in der "English Vocabulary" Liste
+-- INSERT INTO list_vocab (list_id, vocab_id) VALUES (1, 2); -- "book" in der "English Vocabulary" Liste
+-- INSERT INTO list_vocab (list_id, vocab_id) VALUES (2, 3); -- "house" in der "German Vocabulary" Liste

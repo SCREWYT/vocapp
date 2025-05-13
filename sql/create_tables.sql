@@ -1,16 +1,23 @@
-CREATE TABLE todo (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    complete BOOLEAN DEFAULT FALSE,
-    description TEXT NOT NULL
-);
-CREATE TABLE list (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL
-);
-CREATE TABLE todo_list (
-    todo_id INTEGER,
-    list_id INTEGER,
-    PRIMARY KEY (todo_id, list_id),
-    FOREIGN KEY (todo_id) REFERENCES todo (id) ON DELETE CASCADE,
-    FOREIGN KEY (list_id) REFERENCES list (id) ON DELETE CASCADE
-);
+-- CREATE TABLE
+
+-- Tabelle für Vokabellisten (Beispielstruktur für die VocApp)
+-- CREATE TABLE list (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     name TEXT NOT NULL
+-- );
+
+-- Tabelle für Vokabeln (Beispielstruktur für die VocApp)
+-- CREATE TABLE vocab (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     word TEXT NOT NULL,
+--     translation TEXT NOT NULL
+-- );
+
+-- Tabelle für das Mapping zwischen Vokabellisten und Vokabeln
+-- CREATE TABLE list_vocab (
+--     list_id INTEGER,
+--     vocab_id INTEGER,
+--     PRIMARY KEY (list_id, vocab_id),
+--     FOREIGN KEY (list_id) REFERENCES list(id) ON DELETE CASCADE,
+--     FOREIGN KEY (vocab_id) REFERENCES vocab(id) ON DELETE CASCADE
+-- );

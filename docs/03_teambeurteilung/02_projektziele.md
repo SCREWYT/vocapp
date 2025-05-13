@@ -1,14 +1,14 @@
 ---
-title: Improvements
-parent: Team Evaluation
-nav_order: 2
+title: Projektziele
+parent: 03_teambeurteilung
+nav_order: 5
 ---
 
 {: .label }
 [Jane Dane]
 
 {: .no_toc }
-# How we would improve next time
+# Erreichte -und nicht erreichte Ziele
 
 <details open markdown="block">
 {: .text-delta }

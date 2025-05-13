@@ -1,4 +1,4 @@
 # vocapp
 Web Entwicklung - HWR Berlin SS2025
 
-Es hat endlich geklappt oder?
+Stand - 13.05.2025

@@ -1,17 +1,28 @@
-title: Project Name
+title: VocApp
+
+# Design & Layout
 remote_theme: just-the-docs/just-the-docs
 mermaid:
-  version: "10.9.0" # Pick version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "10.9.0"  # Mermaid-Diagramme – Version von jsDelivr CDN
+
+# Benutzerdefinierte Callouts (Hinweisboxen)
 callouts:
   tip:
-    title: 🤍 Tip
+    title: 🤍 Tipp
     color: purple
   info:
     title: ℹ️ Info
     color: blue
   attention:
-    title: ❕ Attention
+    title: ❕ Achtung
     color: yellow
   download:
     title: 💾 Download
     color: grey-dk
+
+# Navigationsergänzungen (PDF ganz unten im Menü)
+just_the_docs:
+  nav:
+    - title: Präsentation
+      url: # KOMMT NOCH, SPÄTER DANN DEN PRÄSI LINK HIER REIN! :3
+      nav_order: 50
