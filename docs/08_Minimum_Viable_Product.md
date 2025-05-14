@@ -1,5 +1,5 @@
 ---
-title: MVP_von_VocApp
+title: MVP von VocApp
 nav_order: 15
 ---
 

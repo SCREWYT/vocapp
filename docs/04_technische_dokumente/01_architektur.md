@@ -1,6 +1,6 @@
 ---
 title: Architektur
-parent: 04_technische_dokumente
+parent: Technische Dokumente
 nav_order: 8
 ---
 

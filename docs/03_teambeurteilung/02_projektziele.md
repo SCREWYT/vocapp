@@ -1,6 +1,6 @@
 ---
 title: Projektziele
-parent: Beurteilung_der_Teamarbeit
+parent: Teambeurteilung
 nav_order: 5
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Beurteilung_der_Teamarbeit
+title: Teambeurteilung
 has_children: true
 nav_order: 3
 ---

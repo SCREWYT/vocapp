@@ -1,5 +1,5 @@
 ---
-title: Figma_Prototyp_VocApp
+title: Figma Prototyp VocApp
 nav_order: 16
 ---
 

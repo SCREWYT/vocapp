@@ -1,5 +1,5 @@
 ---
-title: Design_Entscheidungen
+title: Design Entscheidungen
 nav_order: 2
 ---
 

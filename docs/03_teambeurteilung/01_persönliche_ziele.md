@@ -1,6 +1,6 @@
 ---
-title: Persönliche_Ziele
-parent: Beurteilung_der_Teamarbeit
+title: Persönliche Ziele
+parent: Teambeurteilung
 nav_order: 4
 ---
 
