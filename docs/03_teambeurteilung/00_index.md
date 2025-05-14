@@ -1,8 +1,9 @@
 ---
-title: Team Beurteilung
+title: Beurteilung_der_Teamarbeit
 has_children: true
 nav_order: 3
 ---
-# Team Beurteilung
+
+# Beurteilung der Teamarbeit
 
 <!-- Das alles hier sind erstmal nur Ideen und Vorlagen -->

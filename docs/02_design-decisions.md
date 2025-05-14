@@ -1,5 +1,5 @@
 ---
-title: Design Entscheidungen
+title: Design_Entscheidungen
 nav_order: 2
 ---
 
@@ -17,9 +17,7 @@ nav_order: 2
 
 Wir trafen uns auf Discord und besprachen, was in den nächsten Schritten auf uns zukommt. Da es unser erstes Projekt dieser Art ist, haben wir uns vorerst an der Architektur und Struktur der Full-Stack-Webdev-GitHub-Pages von Prof. Dr. Eck orientiert: https://github.com/hwrberlin/fswd-app/tree/main.
 
-## Zusammenarbeit 
-
-**Meta**  
+## Meta 
 - **Status:** abgeschlossen   
 - **Aktualisierung:** 17.04.2025
 - **Entscheidung getroffen von:** Görkem Ilias Istemi & Rouven Becker

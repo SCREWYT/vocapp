@@ -1,9 +1,9 @@
 ---
-title: MVP – [VocApp]
+title: MVP_von_VocApp
 nav_order: 15
 ---
 
-# MVP – [VocApp]
+# MVP - VocApp
 
 {: .no_toc }
 
@@ -45,7 +45,6 @@ Die Webanwendung **[VocApp]** verfolgt das Ziel, [kurze Projektbeschreibung, z.�
 
 ### Backend
 - [ ] Datenbankmodell entwerfen (z. B. SQLite)
-- [ ] API-Endpunkte aufsetzen
 - [ ] Logik für [Funktionalität] implementieren
 
 ### Frontend

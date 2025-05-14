@@ -1,5 +1,5 @@
 ---
-title: 04_technische_dokumente
+title: Technische_Dokumente
 has_children: true
 nav_order: 7
 ---

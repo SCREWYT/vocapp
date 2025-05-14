@@ -1,21 +1,12 @@
 ---
-title: Reflektion der Teamarbeit
-parent: 03_teambeurteilung
+title: Reflektion_der_Teamarbeit
+parent: Beurteilung_der_Teamarbeit
 nav_order: 6
 ---
 
-{: .label }
-[Jane Dane]
 
-{: .no_toc }
 # Peer review
 
-<details open markdown="block">
-{: .text-delta }
-<summary>Table of contents</summary>
-+ ToC
-{: toc }
-</details>
 
 ## [team member] - review 1
 

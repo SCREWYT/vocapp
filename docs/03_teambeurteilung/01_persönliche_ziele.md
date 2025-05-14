@@ -1,21 +1,9 @@
 ---
-title: Persönliche Ziele
-parent: 03_teambeurteilung
+title: Persönliche_Ziele
+parent: Beurteilung_der_Teamarbeit
 nav_order: 4
 ---
 
-{: .label }
-[Jane Dane]
-
-{: .no_toc }
-# Zusammenfassung der persönlichen Ziele:
-
-<details open markdown="block">
-{: .text-delta }
-<summary>Table of contents</summary>
-+ ToC
-{: toc }
-</details>
 
 ## Görkem Ilias Istemi
 
