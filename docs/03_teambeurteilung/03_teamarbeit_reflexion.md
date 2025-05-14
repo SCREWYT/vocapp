@@ -1,5 +1,5 @@
 ---
-title: Reflektion der Teamarbeit
+title: Reflexion der Teamarbeit
 parent: Teambeurteilung
 nav_order: 6
 ---
