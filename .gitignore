@@ -4,5 +4,8 @@ __pycache__/
 # Ignoriere den Ordner für die virtuelle Umgebung
 virtualenvironment/
 
+# Ignoriere den Ordner für die virtuelle Umgebung
+venv/
+
 # Ignoriere den instance-Ordner (wird von Flask genutzt, z. B. für die SQLite-Datenbank)
 instance/
