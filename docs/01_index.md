@@ -33,7 +33,6 @@ Unsere Zielgruppe sind vor allem Schüler:innen der Klassen 5–10, die eine ein
 Matr.-Nr.: 77211971439
 
 ### Rouven Becker
-
 Matr.-Nr.: 77211968866
 
 ## Eidesstattliche Erklärung

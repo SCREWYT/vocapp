@@ -3,7 +3,7 @@
 
 Web Entwicklung - HWR Berlin SS2025
 
-Stand - 14.05.2025
+Stand - 15.05.2025 - Neu Aufsetzen von Github Pages Test
 
 ---
 
