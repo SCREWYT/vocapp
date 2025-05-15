@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+input, button {
+    padding: 8px;
+    margin: 5px;
+}
+
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flashes li {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 10px;
+    border: 1px solid #ebccd1;
+    margin-bottom: 10px;
+}
