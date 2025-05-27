@@ -3,8 +3,6 @@
 
 Web Entwicklung - HWR Berlin SS2025
 
-Stand - 15.05.2025 - Neu Aufsetzen von Github Pages Test
-
 ---
 
 Dieses Repository enthält den Quellcode und die Dokumentation für **VocApp**, eine Webanwendung zum effizienten Vokabellernen. Die App ermöglicht es Nutzern, eigene Vokabellisten zu erstellen, Lernfortschritte zu verfolgen und Vokabeln über ein interaktives Quizsystem zu wiederholen.
