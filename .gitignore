@@ -9,3 +9,7 @@ venv/
 
 # Ignoriere den instance-Ordner (wird von Flask genutzt, z. B. für die SQLite-Datenbank)
 instance/
+
+# Ignoriere den DS-Store, ist eine reine MacOS Geschichte
+.DS_Store
+
