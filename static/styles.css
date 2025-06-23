@@ -1,23 +1,23 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+body {                                        /* ALLGEMEINES BODY LAYOUT */
+    font-family: Arial, sans-serif;          /* Schriftart Arial mit Fallback (Wenns nicht anders geht) auf serifenlose Schrift (sans-serif) = Ohne Schnörkeleien */
+    margin: 20px;                           /* Abstand außen um gesamte Seite */
+    background-color: #f4f4f4;           /* Hellgrauer Hintergrund */
 }
 
-input, button {
-    padding: 8px;
-    margin: 5px;
+input, button {                               /* FORMULAR-ELEMENTE (Eingabefelder/Buttons) */
+    padding: 8px;                            /* Innenabstand = Quasi Platz im Element selbst */
+    margin: 5px;                            /* Außenabstand zwischen Elementen */
 }
 
-.flashes {
-    list-style-type: none;
-    padding: 0;
+.flashes {                                    /* FLASH-NACHRICHTENLISTE (z. B. Fehlermeldungen oder Hinweise) */
+    list-style-type: none;                   /* Keine Aufzählungspunkte (Punkte/Striche = entfernt) */
+    padding: 0;                             /* Kein Innenabstand zur Liste */
 }
 
-.flashes li {
-    color: #a94442;
-    background-color: #f2dede;
-    padding: 10px;
-    border: 1px solid #ebccd1;
-    margin-bottom: 10px;
+.flashes li {                                 /* EINZELNE FLASH-NACHRICHTEN. So wie in Android Studio die Toast Messages, hier sind sie jedoch lang da */
+    color: #a94442;                        /* Dunkelrote Schriftfarbe für Warn-/Fehlermeldung */
+    background-color: #f2dede;            /* Helles Rot als Hintergrundfarbe für Warnbox */
+    padding: 10px;                         /* Innenabstand = Abstand vom Text zum Rand */
+    border: 1px solid #ebccd1;          /* Dünner Rahmen in passendem Rot-ton */
+    margin-bottom: 10px;                 /* Abstand zur nächsten Flash-Nachricht */
 }
