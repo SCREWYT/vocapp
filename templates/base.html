@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title if title else "Login" }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+<!DOCTYPE html>                                          <!-- Sagt dem Browser, dass man HTML5 verwendet -->
+<html>                                                    <!-- Beginn des HTML-Dokuments -->
+
+<head>                                                      <!-- KOPFTEIL DER SEITE (Enthält alle unsichtbaren Elemente wie Titel, Links oder Zeichencodierungen) -->
+    <meta charset="UTF-8">                                   <!-- Zeichencodierung: UTF-8 = unterstützt Umlaute, Sonderzeichen usw. -->
+    <title>{{ title if title else "Login" }}</title>          <!-- Titel der Seite im Browser-Tab. Dynamisch per Jinja gesetzt, sonst Default: "Login" -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"> 
+                                                                <!-- CSS-Datei einbinden. Wird über Flask-Funktion `url_for` geladen -->
 </head>
-<body>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class="flashes">
-          {% for message in messages %}
-            <li>{{ message }}</li>
+
+<body>                                                             <!-- HAUPTBEREICH DER SEITE -->
+
+    {% with messages = get_flashed_messages() %}                     <!-- Flask-Block: Holt Flash-Nachrichten (Fehler, Hinweise) -->
+      {% if messages %}                                               <!-- Wenn Nachrichten vorhanden sind, zeige sie an -->
+        <ul class="flashes">                                           <!-- Ungeordnete Liste mit der CSS-Klasse "flashes" (gestaltet sie optisch) -->
+          {% for message in messages %}                                 <!-- Schleife: Zeigt alle Nachrichten nacheinander als <li>-Elemente -->
+            <li>{{ message }}</li>                                       <!-- Einzelne Nachricht -->
           {% endfor %}
         </ul>
       {% endif %}
     {% endwith %}
-    {% block content %}{% endblock %}
+
+    {% block content %}{% endblock %}                                         <!-- Platzhalter: Hier wird der jeweilige Seiteninhalt (Login, Register etc.) eingefügt -->
 </body>
-</html>
+
+</html>                                                                          <!-- Ende des HTML-Dokuments -->

@@ -1,6 +1,11 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>Willkommen, {{ username }}!</h2>
-<p>Das ist dein Dashboard.</p>
-<a href="{{ url_for('logout') }}">Logout</a>
-{% endblock %}
+{% extends "base.html" %}                      <!-- Diese Seite basiert auf base.html = erbt Kopfbereich, Styles, Flash-Nachrichten usw. -->
+
+{% block content %}                              <!-- Hier beginnt der Inhalts-Block, der in base.html eingefügt wird -->
+
+<h2>Willkommen, {{ username }}!</h2>               <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
+
+<p>Das ist dein Dashboard.</p>                       <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer -->
+
+<a href="{{ url_for('logout') }}">Logout</a>           <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+
+{% endblock %}                                           <!-- Ende des Inhalts-Blocks – alles zwischen Block und Endblock wird ins Template eingesetzt -->
