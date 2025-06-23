@@ -1,60 +1,60 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+body {                                           /* ALLGEMEINES BODY LAYOUT */
+    font-family: Arial, sans-serif;             /* Die Schriftart wird hier auf Arial gesetzt */
+    margin: 0;                                 /* Kein äußerer Abstand zum Browserrand */
+    padding: 0;                               /* Kein innerer Abstand */
+    background-color: #f4f4f4;             /* Hellgrauer Hintergrund */
+    color: #333;                          /* Dunkelgraue Schriftfarbe */
+min-height: 100vh;                         /* Die Seite soll MINDESTENS so hoch wie das Fenster sein. vh = ViewPort Height = Höhe des sichtbaren Browserfensters */
+    display: flex;                        /* Flexbox-Modell aktivieren = CSS-Layout System, was Elemente flexibel/automatisch anordnen lässt */
+    flex-direction: column;              /* Kinderelemente werden vertikal untereinander angeordnet (Wichtig für Parent/Child Anordnung) */
 }
 
-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 20px;
-    text-align: center;
+header {                                         /* KOPFBEREICH DER SEITE */
+    background-color: #007BFF;                /* Blau */
+    color: white;                            /* Weiße Schrift */
+    padding: 20px;                            /* Innenabstand */
+    text-align: center;                      /* Text wird hier zentriert für den Header */
 }
 
-main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+main {                                           /* HAUPTINHALT (main) */
+    max-width: 800px;                           /* Die max. Breite wird begrenzt */
+    margin: 20px auto;                         /* Außenabstand + zentriert */
+    padding: 20px;                            /* Innenabstand */
+    background-color: white;               /* Weißer Hintergrund */
+    border-radius: 8px;                     /* Abgerundete Ecken */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Weicher Schatten */
 }
 
-h1, h2 {
-    color: #007BFF;
+h1, h2 {                                         /* Überschriften. H1 & H2 = So wie in Word auch. H1 = Größte Überschrift, H2 = Überschriften für Unterpunkte der H1 */
+    color: #007BFF;                           /* Gleiche blaue Farbe wie Header */
 }
 
-.imprint, .contact {
-    margin-bottom: 20px;
+.imprint, .contact {                             /* BEREICH FÜR IMPRESSUM & KONTAKT */
+    margin-bottom: 20px;                        /* Der Abstand nach unten */
 }
 
-.contact-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #28A745;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: background-color 0.3s;
+.contact-button {                                /* GESTALTUNG FÜR DEN KONTAKTBUTTON */
+    display: inline-block;                      /* Macht aus einem Link einen Button */           
+    padding: 10px 20px;                        /* Wieder Innenabstand */       
+    margin-top: 10px;                         /* Abstand nach oben */         
+    background-color: #28A745;             /* Hellgrauer Hintergrund */
+    color: white;                         /* Weiße Schrift */
+    text-decoration: none;                 /* Kein Unterstrich, normalerweise haben Links einen Unterstrich. Wollen wir aber nicht. */
+    border-radius: 25px;                  /* Runde Kanten = So eine Pillenform */
+    transition: background-color 0.3s;   /* Beim Hovering ein weicher Übergang */
 }
 
-.contact-button:hover {
-    background-color: #218838;
+.contact-button:hover {                          /* BUTTON-HOVER-EFFEKT */
+    background-color: #218838;                /* Etwas dunkleres Grün beim Überfahren, um die Sichtbarkeit zu erhöhen */
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    position: relative;
-    bottom: 0;
-margin-top: auto;
-    width: 100%;
+footer {                                         /* FUßBEREICH = UNTERER BEREICH */
+    text-align: center;                         /* Zentrierter Text */
+    padding: 10px;                             /* Innenabstand */
+    background-color: #007BFF;              /* Auch Blau wie der Header */
+    color: white;                          /* Weiße Schrift */
+    position: relative;                     /* Position bleibt im normalen Flow = Sonst wäre es mit static = Standard. "Relative" immer relativ zur Position */                  
+    bottom: 0;                             /* Am unteren Rand des Bereichs positioniert */
+margin-top: auto;                         /* Schiebt den Fußbereich ans Ende der Seite */
+    width: 100%;                         /* Über die ganze Breite der Seite groß */
 }
