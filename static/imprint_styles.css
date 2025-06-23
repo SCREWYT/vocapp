@@ -1,3 +1,5 @@
+/* Speziell für einzelne Seiten gedacht wie Impressum & Kontakt */
+
 body {                                           /* ALLGEMEINES BODY LAYOUT */
     font-family: Arial, sans-serif;             /* Die Schriftart wird hier auf Arial gesetzt */
     margin: 0;                                 /* Kein äußerer Abstand zum Browserrand */

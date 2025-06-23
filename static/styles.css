@@ -1,3 +1,6 @@
+/* Allgemeines Design der Webseite, man referenziert sie einfach wenn man sie braucht */
+
+
 body {                                        /* ALLGEMEINES BODY LAYOUT */
     font-family: Arial, sans-serif;          /* Schriftart Arial mit Fallback (Wenns nicht anders geht) auf serifenlose Schrift (sans-serif) = Ohne Schnörkeleien */
     margin: 20px;                           /* Abstand außen um gesamte Seite */
