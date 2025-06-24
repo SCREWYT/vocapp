@@ -1,20 +1,29 @@
-# immer neues terminal öffnen dann: python3 -m venv venv
-# dann virtuelle umgebung aktivieren: source venv/bin/activate
-# dann abhängigkeiten istallieren: pip install -r requirements.txt
+# Immer ein neues Terminal öffnen, danach: python3 -m venv venv
+# Dann die virtuelle Umgebung aktivieren: source venv/bin/activate
+# Als nächstes Abhängigkeiten installieren: pip install -r requirements.txt
 
 
+# Importiert Flask & Abhängigkeiten
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+# Für Passwortverschlüsselung (Hashing & Überprüfung)
 from werkzeug.security import generate_password_hash, check_password_hash
+# Für die Datenbank
 import sqlite3
+# Zur Überprüfung, ob eine beliebige Datei existiert
 import os
 
-app = Flask(__name__)
-app.secret_key = 'dein_geheimer_schluessel'  # In der Produktion durch einen sicheren, zufälligen Schlüssel ersetzen
+# Dadurch darf Flask relativ zum instance/ Ordner arbeiten, dort liegt/wird die Datenbank erstellt
+app = Flask(__name__, instance_relative_config=True)
+app.secret_key = 'dein_geheimer_schluessel'  # In der echten Welt wäre das so nicht zulässig und würde durch einen zufälligen, sichereren Wert ersetzt werden
 
-DATABASE = 'database.db'
+# Name der Datenbank
+DATABASE = os.path.join(app.instance_path, 'database.db')
 
+# Stellt erstmal sicher, dass der Pfad zum "instance/" Ordner überhaupt existiert
+os.makedirs(app.instance_path, exist_ok=True)
+
+# Initialisiert die SQL-Datenbank. Dank "if not os.path.exists" aber auch nur, wenn noch keine existiert
 def init_db():
-    # Erstelle die SQLite-Datenbank, falls sie noch nicht existiert
     if not os.path.exists(DATABASE):
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()

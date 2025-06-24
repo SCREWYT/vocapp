@@ -2,29 +2,29 @@
 
 {% block content %}                                    
 
-<h2>Registrierung</h2>                                 <!-- Überschrift für das Registrierungsformular -->
+<h2>Registrierung</h2>                                          <!-- Überschrift für das Registrierungsformular -->
 
-<form method="POST">                                   <!-- Formular nutzt POST-Methode = Daten werden im Hintergrund sicher gesendet -->
+<form method="POST">                                              <!-- Formular nutzt POST-Methode = Daten werden im Hintergrund sicher gesendet -->
 
-    <div>                                              <!-- ERSTE FORMULARZEILE: Benutzername -->
-        <label for="username">Benutzername:</label>   <!-- Beschriftung für Eingabe -->
+    <div>                                                           <!-- ERSTE FORMULARZEILE: Benutzername -->
+        <label for="username">Benutzername:</label>                  <!-- Beschriftung für Eingabe -->
         <input type="text" name="username" id="username" required> 
-                                                       <!-- Eingabefeld für Benutzername -->
+                                                                       <!-- Eingabefeld für Benutzername -->
     </div>
 
-    <div>                                              <!-- ZWEITE FORMULARZEILE: Passwort -->
-        <label for="password">Passwort:</label>       <!-- Beschriftung für Passwort-Eingabe -->
+    <div>                                                                 <!-- ZWEITE FORMULARZEILE: Passwort -->
+        <label for="password">Passwort:</label>                            <!-- Beschriftung für Passwort-Eingabe -->
         <input type="password" name="password" id="password" required> 
-                                                       <!-- Passwort-Eingabefeld (Verdeckte Eingabe)-->
+                                                                             <!-- Passwort-Eingabefeld (Verdeckte Eingabe)-->
     </div>
 
-    <button type="submit">Registrieren</button>       <!-- Button zum Absenden des Formulars -->
+    <button type="submit">Registrieren</button>                                 <!-- Button zum Absenden des Formulars -->
 
 </form>
 
-<p>                                                   <!-- Hinweis unter dem Formular -->
+<p>                                                                                 <!-- Hinweis unter dem Formular -->
     Bereits ein Konto? 
-    <a href="{{ url_for('login') }}">Zum Login</a>   <!-- Link zurück zur Login-Seite (Flask erzeugt URL) -->
+    <a href="{{ url_for('login') }}">Zum Login</a>                                    <!-- Link zurück zur Login-Seite (Flask erzeugt URL) -->
 </p>
 
 {% endblock %}                                        
