@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Neue Karteikarte</title>
+</head>
+<body>
+    <h1>Neue Karteikarte erstellen</h1>
+
+    <form method="POST" action="{{ url_for('add_flashcard') }}">
+        <label for="question">Frage:</label><br>
+        <textarea name="question" rows="3" cols="50" required></textarea><br><br>
+
+        <label for="answer">Antwort:</label><br>
+        <textarea name="answer" rows="3" cols="50" required></textarea><br><br>
+
+        <button type="submit">Karte speichern</button>
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>
+</body>
+</html>
