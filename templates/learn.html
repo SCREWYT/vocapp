@@ -1,0 +1,27 @@
+<!DOCTYPE html>                                          
+<html lang="de">                                        
+<head>
+    <meta charset="UTF-8">                               
+    <title>Lernen</title>                                
+</head>
+<body>                                                   
+
+    <h1>Karteikarten lernen</h1>                          
+
+    <p><strong>Frage:</strong></p>                        <!-- Label: zeigt, dass die nächste Zeile die Frage enthält -->
+    <p>{{ card.question }}</p>                            <!-- Zeigt die Frage der Karte an -->
+
+    <form method="POST">                                  <!-- Formular zum Absenden der Antwortbewertung (ob gewusst oder nicht) -->
+        <input type="hidden" name="card_id" value="{{ card.id }}">   <!-- Verstecktes Feld zur Übergabe der ID der aktuellen Karte -->
+
+        <p><strong>Antwort anzeigen:</strong> {{ card.answer }}</p>  <!-- Zeigt die Antwort zur Frage direkt darunter an -->
+
+        <p>Hast du die Antwort gewusst?</p>               <!-- Fragt den Nutzer, ob die Antwort gewusst wurde -->
+
+        <button type="submit" name="result" value="correct">✅ Ja</button>   <!-- Button: Antwort wurde gewusst, setzt Wert "correct" -->
+        <button type="submit" name="result" value="wrong">❌ Nein</button>   <!-- Button: Antwort wurde nicht gewusst, setzt Wert "wrong" -->
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>    <!-- Link zurück zur Übersichtsseite -->
+</body>
+</html>
