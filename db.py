@@ -34,7 +34,7 @@ def close_db(e=None):
 def init_db():
     """
     Initialisiert die Datenbankstruktur:
-    Erstellt die Tabellen 'users' und 'flashcards', falls sie noch nicht existieren.
+    Erstellt die Tabellen 'users', 'sets' und 'flashcards', falls sie noch nicht existieren.
     Diese Funktion wird z. B. beim Start über 'flask init-db' aufgerufen.
     """
     db = get_db()
@@ -50,16 +50,28 @@ def init_db():
         )
     ''')
 
-    # Tabelle für Karteikarten
+    # Neue Tabelle: Karteikartensets
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS sets (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            name TEXT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )
+    ''')
+
+    # Erweiterte flashcards-Tabelle: Zuordnung zu Sets
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS flashcards (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,                     -- Fremdschlüssel zur Zuordnung der Karte zum User
+            set_id INTEGER NOT NULL,                      -- Fremdschlüssel zur Zuordnung der Karte zu einem Set
             question TEXT NOT NULL,                       -- Vorderseite der Karte (Frage)
             answer TEXT NOT NULL,                         -- Rückseite der Karte (Antwort)
             box INTEGER DEFAULT 1,                        -- Spaced Repetition Box (1 = neu, 2 = mittel, 3 = sicher)
             last_reviewed DATE,                           -- Letztes Abfragedatum (optional verwendbar)
-            FOREIGN KEY (user_id) REFERENCES users(id)    -- Fremdschlüssel-Verknüpfung
+            FOREIGN KEY (user_id) REFERENCES users(id),  -- Fremdschlüssel-Verknüpfung zum User
+            FOREIGN KEY (set_id) REFERENCES sets(id)     -- Fremdschlüssel-Verknüpfung zum Set
         )
     ''')
 
