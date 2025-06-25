@@ -1,18 +1,22 @@
 import sqlite3
-from flask import g
+from flask import g, current_app
 import os
-
-# Name der SQLite-Datenbankdatei
-DATABASE = os.path.join(os.getcwd(), 'database.db')
 
 def get_db():
     """
     Stellt eine Verbindung zur SQLite-Datenbank her.
     Die Verbindung wird im 'g' Objekt gespeichert (global für die aktuelle App-Request).
+    Die Datei wird im Flask-Standardordner 'instance/' gespeichert.
     """
     if 'db' not in g:
+        # Pfad zur Datenbank im instance-Verzeichnis
+        db_path = os.path.join(current_app.instance_path, 'database.db')
+
+        # Stelle sicher, dass der Ordner existiert
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
+
         # Verbindung zur SQLite-Datenbank aufbauen und im 'g' Objekt speichern
-        g.db = sqlite3.connect(DATABASE)
+        g.db = sqlite3.connect(db_path)
         # Rückgabe von Ergebnissen als Dictionary (für lesbaren Zugriff auf Spaltennamen)
         g.db.row_factory = sqlite3.Row
     return g.db
