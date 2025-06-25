@@ -128,6 +128,70 @@ def dashboard():
 
     return render_template('dashboard.html', username=session.get('username'), flashcards=flashcards)
 
+# ----------------------------------
+# Karteikarte bearbeiten (nur eigene)
+# ----------------------------------
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit_flashcard(id):
+    """
+    Bearbeiten einer bestehenden Karteikarte.
+    Nur möglich, wenn sie dem eingeloggten Nutzer gehört.
+    """
+    if 'user_id' not in session:
+        flash('Bitte logge dich ein.')
+        return redirect(url_for('login'))
+
+    db = get_db()
+    user_id = session['user_id']
+
+    # Karte laden und prüfen, ob sie dem Nutzer gehört
+    card = db.execute(
+        'SELECT * FROM flashcards WHERE id = ? AND user_id = ?',
+        (id, user_id)
+    ).fetchone()
+
+    if card is None:
+        flash('Karte nicht gefunden oder kein Zugriff.')
+        return redirect(url_for('dashboard'))
+
+    if request.method == 'POST':
+        question = request.form['question']
+        answer = request.form['answer']
+
+        # Karte aktualisieren
+        db.execute(
+            'UPDATE flashcards SET question = ?, answer = ? WHERE id = ?',
+            (question, answer, id)
+        )
+        db.commit()
+
+        flash('Karte erfolgreich aktualisiert.')
+        return redirect(url_for('dashboard'))
+
+    return render_template('edit_flashcard.html', card=card)
+
+# ----------------------------------
+# Karteikarte löschen (nur eigene)
+# ----------------------------------
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete_flashcard(id):
+    """
+    Löscht eine Karteikarte, wenn sie dem eingeloggten Nutzer gehört.
+    Nur per POST-Aufruf erlaubt.
+    """
+    if 'user_id' not in session:
+        flash('Bitte logge dich ein.')
+        return redirect(url_for('login'))
+
+    db = get_db()
+    user_id = session['user_id']
+
+    # Karte nur löschen, wenn sie dem Nutzer gehört
+    db.execute('DELETE FROM flashcards WHERE id = ? AND user_id = ?', (id, user_id))
+    db.commit()
+
+    flash('Karte wurde gelöscht.')
+    return redirect(url_for('dashboard'))
 
 # ----------------------------------
 # Neue Karteikarte erstellen
