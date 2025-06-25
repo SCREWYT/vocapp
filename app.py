@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from db import get_db, close_db, init_db
+import random
 
 app = Flask(__name__)
 app.secret_key = 'geheimer_schluessel'  # WICHTIG: In der Produktion durch sicheren Wert ersetzen
@@ -228,6 +229,60 @@ def add_flashcard():
 
     return render_template('add_flashcard.html')
 
+# ---------------------------------------------
+# Spaced Repetition Lernmodus (Learn Route)
+# ---------------------------------------------
+@app.route('/learn', methods=['GET', 'POST'])
+def learn():
+    """
+    Lernfunktion basierend auf Spaced Repetition.
+    Zeigt zufällige Karte aus niedrigster verfügbaren Box.
+    Antwortbewertung (gewusst/nicht gewusst) verändert die Box.
+    """
+    if 'user_id' not in session:
+        flash('Bitte logge dich ein.')
+        return redirect(url_for('login'))
+
+    db = get_db()
+    user_id = session['user_id']
+
+    if request.method == 'POST':
+        card_id = int(request.form['card_id'])
+        result = request.form['result']  # 'correct' oder 'wrong'
+
+        # Aktuelle Box auslesen
+        card = db.execute('SELECT box FROM flashcards WHERE id = ? AND user_id = ?', (card_id, user_id)).fetchone()
+
+        if card:
+            current_box = card['box']
+
+            # Ergebnis verarbeiten
+            if result == 'correct':
+                new_box = min(current_box + 1, 3)  # max. Box 3
+            else:
+                new_box = 1  # Zurücksetzen
+
+            # Update durchführen
+            db.execute('UPDATE flashcards SET box = ?, last_reviewed = DATE("now") WHERE id = ? AND user_id = ?',
+                       (new_box, card_id, user_id))
+            db.commit()
+
+        return redirect(url_for('learn'))
+
+    # GET: Karte ziehen (Box 1 zuerst, dann 2, dann 3)
+    for box in [1, 2, 3]:
+        cards = db.execute(
+            'SELECT * FROM flashcards WHERE user_id = ? AND box = ?',
+            (user_id, box)
+        ).fetchall()
+
+        if cards:
+            card = random.choice(cards)
+            return render_template('learn.html', card=card)
+
+    # Falls keine Karten vorhanden
+    flash('Keine Karteikarten zum Lernen verfügbar.')
+    return redirect(url_for('dashboard'))
 
 # -----------------------------
 # App starten (nur lokal)
