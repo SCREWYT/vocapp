@@ -121,13 +121,17 @@ def dashboard():
     db = get_db()
     user_id = session['user_id']
 
-    # Alle Karten abrufen, die dem aktuellen Nutzer gehören
-    flashcards = db.execute(
-        'SELECT question, answer FROM flashcards WHERE user_id = ?',
+    # Jetzt wird die ID mitgeladen
+    rows = db.execute(
+        'SELECT id, question, answer FROM flashcards WHERE user_id = ?',
         (user_id,)
     ).fetchall()
 
+    # Wandelt sqlite3.Row-Objekte in echte Dictionaries um (damit card['id'] funktioniert)
+    flashcards = [dict(row) for row in rows]
+
     return render_template('dashboard.html', username=session.get('username'), flashcards=flashcards)
+
 
 # ----------------------------------
 # Karteikarte bearbeiten (nur eigene)
