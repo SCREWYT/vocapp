@@ -6,9 +6,9 @@
 
 <p>Das ist dein Dashboard.</p>                                            <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer. p = paragraph -->
 
-<a href="{{ url_for('add_flashcard') }}">➕ Neue Karteikarte erstellen</a> <!-- Link zum Formular, um eine neue Karteikarte anzulegen. href = hypertext reference -->
-<br>                                                                        <!-- a = (anchor), anklickbares Element, Route liegt in app.py -->                                                                          
-<a href="{{ url_for('logout') }}">🚪 Logout</a>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+<p><a href="{{ url_for('add_flashcard') }}">➕ Neue Karteikarte erstellen</a></p> <!-- Link zum Formular, um eine neue Karteikarte anzulegen. href = hypertext reference -->
+<p><a href="{{ url_for('logout') }}">🚪 Logout</a></p>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+<p><a href="{{ url_for('learn') }}">📚 Jetzt lernen (Spaced Repetition)</a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn -->
 
 {% if flashcards %}                                                            <!-- Wenn Karteikarten vorhanden sind, wird eine Tabelle angezeigt -->
     <h3>Deine Karteikarten</h3>                                                 <!-- Unterüberschrift für die Tabelle -->
