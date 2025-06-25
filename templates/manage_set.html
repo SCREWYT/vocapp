@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />                                          
+    <title>Karteikarten verwalten – {{ set_obj.name }}</title>                              <!-- Seitentitel zeigt den Namen des aktuellen Sets -->
+</head>
+<body>
+    <h1>Karteikarten im Set: "{{ set_obj.name }}"</h1>                                         <!-- Hauptüberschrift mit dem Namen des Sets -->
+
+    <!-- Formular zum Hinzufügen -->
+    <h2>Neue Karte hinzufügen</h2>                                                                <!-- Unterüberschrift für das Formular -->
+    <form method="POST" action="{{ url_for('manage_set', set_id=set_obj.id) }}">                   <!-- Formular zum Hinzufügen einer neuen Karte zum Set -->
+        <label for="question">Frage:</label><br />                                                  <!-- Beschriftung für das Fragenfeld -->
+        <textarea name="question" rows="3" cols="50" required></textarea><br /><br />                <!-- Mehrzeiliges Texteingabefeld für die Frage, Pflichtfeld -->
+
+        <label for="answer">Antwort:</label><br />                                                     <!-- Beschriftung für das Antwortfeld -->
+        <textarea name="answer" rows="3" cols="50" required></textarea><br /><br />                     <!-- Mehrzeiliges Texteingabefeld für die Antwort, Pflichtfeld -->
+
+        <button type="submit">Karte speichern</button>                                                    <!-- Absende-Button zum Speichern der Karte -->
+    </form>
+
+    <hr />                                                                                                   <!-- Horizontale Linie als Trennung -->
+
+    <!-- Bestehende Karten -->
+    <h2>Bestehende Karteikarten</h2>                                                                            <!-- Überschrift für die Liste der vorhandenen Karten -->
+    {% if flashcards %}                                                                                          <!-- Prüft, ob Karten im Set vorhanden sind -->
+        <table border="1" cellpadding="8" cellspacing="0">                                                        <!-- Tabelle mit Rahmen und Abständen -->
+            <thead>
+                <tr>
+                    <th>Frage</th>                                                                                   <!-- Tabellenkopf: Spalte Frage -->
+                    <th>Antwort</th>                                                                                  <!-- Tabellenkopf: Spalte Antwort -->
+                    <th>Aktionen</th>                                                                                  <!-- Tabellenkopf: Spalte Aktionen -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for card in flashcards %}                                                                               <!-- Schleife über alle Karten -->
+                    <tr>
+                        <td>{{ card.question }}</td>                                                                         <!-- Zeigt die Frage an -->
+                        <td>{{ card.answer }}</td>                                                                            <!-- Zeigt die Antwort an -->
+                        <td>                                                                                                   <!-- Spalte für Aktionen -->
+                            <a href="{{ url_for('edit_flashcard', id=card.id) }}">Bearbeiten</a> |                              <!-- Link zur Bearbeitung der Karte -->
+                            <form action="{{ url_for('delete_flashcard', id=card.id) }}" method="POST" style="display:inline;">  <!-- Formular zum Löschen, Inline-Stil -->
+                                <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>        <!-- Löschbutton mit Bestätigungsabfrage -->
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}                                                                                                                    <!-- Falls keine Karten vorhanden sind -->
+        <p>Dieses Set enthält noch keine Karteikarten.</p>                                                                        <!-- Hinweistext, wenn keine Karten da sind -->
+    {% endif %}
+
+    <p><a href="{{ url_for('sets_overview') }}">← Zurück zu den Sets</a></p>                                                      <!-- Link zurück zur Set-Übersicht -->
+</body>
+</html>
