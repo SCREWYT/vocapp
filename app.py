@@ -309,6 +309,115 @@ def learn():
     flash('Keine Karteikarten zum Lernen verfügbar.')
     return redirect(url_for('dashboard'))
 
+# ------------------
+# Set-Übersicht
+# ------------------
+
+@app.route('/sets', methods=['GET', 'POST'])
+def sets_overview():
+    """
+    Übersichtsseite für Karteikartensets.
+    GET: Zeigt alle Sets des Users an.
+    POST: Fügt ein neues Set hinzu.
+    """
+    if 'user_id' not in session:
+        flash('Bitte logge dich ein.')
+        return redirect(url_for('login'))
+
+    db = get_db()
+    user_id = session['user_id']
+
+    if request.method == 'POST':
+        # Neues Set anlegen
+        set_name = request.form.get('set_name', '').strip()
+        if not set_name:
+            flash('Der Name des Sets darf nicht leer sein.')
+            return redirect(url_for('sets_overview'))
+
+        # Prüfen, ob Setname bereits existiert
+        exists = db.execute(
+            'SELECT id FROM sets WHERE user_id = ? AND name = ?',
+            (user_id, set_name)
+        ).fetchone()
+
+        if exists:
+            flash('Du hast bereits ein Set mit diesem Namen.')
+            return redirect(url_for('sets_overview'))
+
+        # Neues Set speichern
+        db.execute(
+            'INSERT INTO sets (user_id, name) VALUES (?, ?)',
+            (user_id, set_name)
+        )
+        db.commit()
+        flash(f'Set "{set_name}" wurde angelegt.')
+        return redirect(url_for('sets_overview'))
+
+    # GET: Alle Sets abrufen
+    sets = db.execute(
+        'SELECT id, name FROM sets WHERE user_id = ? ORDER BY name',
+        (user_id,)
+    ).fetchall()
+
+    return render_template('sets_overview.html', sets=sets)
+
+
+# -----------------------------
+# Manage Sets ( Erstmal nur Platzhalter )
+# -----------------------------
+
+@app.route('/sets/<int:set_id>', methods=['GET', 'POST'])
+def manage_set(set_id):
+    """
+    Verwaltung der Karteikarten innerhalb eines Sets.
+    GET: Zeigt alle Karten im Set und ein Formular zum Hinzufügen.
+    POST: Fügt eine neue Karte zum Set hinzu.
+    """
+    if 'user_id' not in session:
+        flash('Bitte logge dich ein.')
+        return redirect(url_for('login'))
+
+    db = get_db()
+    user_id = session['user_id']
+
+    # Prüfen, ob das Set dem eingeloggten Nutzer gehört
+    set_obj = db.execute(
+        'SELECT id, name FROM sets WHERE id = ? AND user_id = ?',
+        (set_id, user_id)
+    ).fetchone()
+
+    if not set_obj:
+        flash('Set nicht gefunden oder kein Zugriff.')
+        return redirect(url_for('sets_overview'))
+
+    if request.method == 'POST':
+        # Neue Karteikarte hinzufügen
+        question = request.form.get('question', '').strip()
+        answer = request.form.get('answer', '').strip()
+
+        if not question or not answer:
+            flash('Frage und Antwort dürfen nicht leer sein.')
+            return redirect(url_for('manage_set', set_id=set_id))
+
+        db.execute(
+            '''
+            INSERT INTO flashcards (user_id, set_id, question, answer)
+            VALUES (?, ?, ?, ?)
+            ''',
+            (user_id, set_id, question, answer)
+        )
+        db.commit()
+        flash('Karteikarte erfolgreich hinzugefügt.')
+        return redirect(url_for('manage_set', set_id=set_id))
+
+    # GET: Alle Karten des Sets abfragen
+    flashcards = db.execute(
+        'SELECT id, question, answer FROM flashcards WHERE user_id = ? AND set_id = ? ORDER BY id DESC',
+        (user_id, set_id)
+    ).fetchall()
+
+    return render_template('manage_set.html', set_obj=set_obj, flashcards=flashcards)
+
 
 # -----------------------------
 # App starten (nur lokal)
