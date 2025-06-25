@@ -1,11 +1,35 @@
-{% extends "base.html" %}                      <!-- Diese Seite basiert auf base.html = erbt Kopfbereich, Styles, Flash-Nachrichten usw. -->
+{% extends "base.html" %}                                           <!-- Diese Seite basiert auf base.html = erbt Kopfbereich, Styles, Flash-Nachrichten usw. -->
 
-{% block content %}                              <!-- Hier beginnt der Inhalts-Block, der in base.html eingefügt wird -->
+{% block content %}                                                   <!-- Hier beginnt der Inhalts-Block, der in base.html eingefügt wird -->
 
-<h2>Willkommen, {{ username }}!</h2>               <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
+<h2>Willkommen, {{ username }}!</h2>                                    <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
 
-<p>Das ist dein Dashboard.</p>                       <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer -->
+<p>Das ist dein Dashboard.</p>                                            <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer. p = paragraph -->
 
-<a href="{{ url_for('logout') }}">Logout</a>           <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+<a href="{{ url_for('add_flashcard') }}">➕ Neue Karteikarte erstellen</a> <!-- Link zum Formular, um eine neue Karteikarte anzulegen. href = hypertext reference -->
+<br>                                                                        <!-- a = (anchor), anklickbares Element, Route liegt in app.py -->                                                                          
+<a href="{{ url_for('logout') }}">🚪 Logout</a>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
 
-{% endblock %}                                           <!-- Ende des Inhalts-Blocks – alles zwischen Block und Endblock wird ins Template eingesetzt -->
+{% if flashcards %}                                                            <!-- Wenn Karteikarten vorhanden sind, wird eine Tabelle angezeigt -->
+    <h3>Deine Karteikarten</h3>                                                 <!-- Unterüberschrift für die Tabelle -->
+    <table border="1" cellpadding="8" cellspacing="0">                           <!-- Tabelle mit Rahmen und etwas Abstand. Padding = Polster des Feldes. Cellspacing = Abstand zwischen Zellen -->
+        <thead>
+            <tr>
+                <th>Frage</th>                                                      <!-- th = Tabellenkopf: Spalte für Fragen -->
+                <th>Antwort</th>                                                     <!-- Tabellenkopf: Spalte für Antworten -->
+            </tr>
+        </thead>
+        <tbody>                                                                         <!-- tbody = table body -->
+            {% for card in flashcards %}                                                 <!-- Schleife über alle vorhandenen Karteikarten -->
+                <tr>
+                    <td>{{ card.question }}</td>                                           <!-- Zeigt die Frage an -->
+                    <td>{{ card.answer }}</td>                                              <!-- Zeigt die Antwort an -->
+                </tr>
+            {% endfor %}
+        </tbody>                                                                            
+    </table>                                                                                    <!-- table = Gesamtcontainer, tbody = Eigentlicher Datenbereich -->
+{% else %}
+    <p>Du hast noch keine Karteikarten erstellt.</p>                                              <!-- Hinweis, falls noch keine Karten vorhanden sind -->
+{% endif %}
+
+{% endblock %}                                                                                       <!-- Ende des Inhalts-Blocks – alles zwischen Block und Endblock wird ins Template eingesetzt -->
