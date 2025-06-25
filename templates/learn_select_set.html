@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />                                           <!-- Zeichencodierung auf UTF-8 setzen -->
+    <title>Set zum Lernen auswählen</title>                           <!-- Seitentitel im Browser-Tab -->
+</head>
+<body>
+    <h1>Welches Set möchtest du lernen?</h1>                         <!-- Hauptüberschrift -->
+
+    {% if sets %}                                                     <!-- Prüfen, ob Sets vorhanden sind -->
+        <ul>                                                         <!-- Ungeordnete Liste zur Anzeige der Sets -->
+            {% for s in sets %}                                       <!-- Schleife über alle Sets -->
+                <li>
+                    <a href="{{ url_for('learn_set', set_id=s.id) }}">{{ s.name }}</a>   <!-- Link zum Lernmodus für das jeweilige Set mit dynamischem Namen -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}                                                       <!-- Falls keine Sets vorhanden sind -->
+        <p>Du hast keine Sets zum Lernen.</p>                       <!-- Hinweistext -->
+        <p><a href="{{ url_for('sets_overview') }}">Sets erstellen</a></p>   <!-- Link zur Seite zum Erstellen neuer Sets -->
+    {% endif %}
+
+    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>    <!-- Link zurück zur Dashboard-Übersicht -->
+</body>
+</html>
