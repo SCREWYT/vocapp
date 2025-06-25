@@ -17,6 +17,7 @@
             <tr>
                 <th>Frage</th>                                                      <!-- th = Tabellenkopf: Spalte für Fragen -->
                 <th>Antwort</th>                                                     <!-- Tabellenkopf: Spalte für Antworten -->
+                <th>Aktionen</th>                                                    <!-- Tabellenkopf: Spalte für Bearbeiten/Löschen -->
             </tr>
         </thead>
         <tbody>                                                                         <!-- tbody = table body -->
@@ -24,6 +25,12 @@
                 <tr>
                     <td>{{ card.question }}</td>                                           <!-- Zeigt die Frage an -->
                     <td>{{ card.answer }}</td>                                              <!-- Zeigt die Antwort an -->
+                    <td>                                                                    <!-- Aktionsspalte: Buttons zum Bearbeiten und Löschen -->
+                        <a href="{{ url_for('edit_flashcard', id=card['id']) }}">Bearbeiten</a>   <!-- Link zur Bearbeitungsseite der Karte -->
+                        <form action="{{ url_for('delete_flashcard', id=card['id']) }}" method="POST" style="display:inline;"> <!-- Formular zum Löschen der Karte, POST-Methode -->
+                            <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>           <!-- Button mit Bestätigungsabfrage -->
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>                                                                            
