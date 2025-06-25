@@ -3,6 +3,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from db import get_db, close_db, init_db
 import random
 
+
+
+
+# Quellen: Von Commit: "Move database.db to instance folder and update app.py to follow Flask best practices" am 24. Juni bis 
+# Commit: "Fix error on dashboard by adding card ID to query" am 25. Juni nur dieser Chat hier: https://chatgpt.com/share/685bd087-d1f4-800b-825f-d8f7ec1b94e3
+# Name des Chats: Flask Login Struktur Aufbau
+
+
+
+
 app = Flask(__name__)
 app.secret_key = 'geheimer_schluessel'  # WICHTIG: In der Produktion durch sicheren Wert ersetzen
 
@@ -239,9 +249,10 @@ def add_flashcard():
 @app.route('/learn', methods=['GET', 'POST'])
 def learn():
     """
-    Lernfunktion basierend auf Spaced Repetition.
-    Zeigt zufällige Karte aus niedrigster verfügbaren Box.
-    Antwortbewertung (gewusst/nicht gewusst) verändert die Box.
+    Lernfunktion mit Antwortanzeige per Button.
+    Zwei Zustände:
+    - GET oder show_answer: zeigt Frage (+ optional Antwort)
+    - POST mit Ergebnis: aktualisiert Box und lädt nächste Karte
     """
     if 'user_id' not in session:
         flash('Bitte logge dich ein.')
@@ -250,30 +261,41 @@ def learn():
     db = get_db()
     user_id = session['user_id']
 
+    # POST: Ergebnis auswerten (gewusst / nicht gewusst)
     if request.method == 'POST':
-        card_id = int(request.form['card_id'])
-        result = request.form['result']  # 'correct' oder 'wrong'
+        if 'result' in request.form:
+            card_id = int(request.form['card_id'])
+            result = request.form['result']
 
-        # Aktuelle Box auslesen
-        card = db.execute('SELECT box FROM flashcards WHERE id = ? AND user_id = ?', (card_id, user_id)).fetchone()
+            card = db.execute(
+                'SELECT box FROM flashcards WHERE id = ? AND user_id = ?',
+                (card_id, user_id)
+            ).fetchone()
 
-        if card:
-            current_box = card['box']
+            if card:
+                current_box = card['box']
+                new_box = min(current_box + 1, 3) if result == 'correct' else 1
 
-            # Ergebnis verarbeiten
-            if result == 'correct':
-                new_box = min(current_box + 1, 3)  # max. Box 3
-            else:
-                new_box = 1  # Zurücksetzen
+                db.execute(
+                    'UPDATE flashcards SET box = ?, last_reviewed = DATE("now") WHERE id = ? AND user_id = ?',
+                    (new_box, card_id, user_id)
+                )
+                db.commit()
 
-            # Update durchführen
-            db.execute('UPDATE flashcards SET box = ?, last_reviewed = DATE("now") WHERE id = ? AND user_id = ?',
-                       (new_box, card_id, user_id))
-            db.commit()
+            return redirect(url_for('learn'))
 
-        return redirect(url_for('learn'))
+        elif 'show_answer' in request.form:
+            # Antwort anzeigen – Karte erneut laden
+            card_id = int(request.form['card_id'])
+            card = db.execute(
+                'SELECT * FROM flashcards WHERE id = ? AND user_id = ?',
+                (card_id, user_id)
+            ).fetchone()
 
-    # GET: Karte ziehen (Box 1 zuerst, dann 2, dann 3)
+            if card:
+                return render_template('learn.html', card=card, reveal=True)
+
+    # GET: Neue Karte ziehen
     for box in [1, 2, 3]:
         cards = db.execute(
             'SELECT * FROM flashcards WHERE user_id = ? AND box = ?',
@@ -282,11 +304,11 @@ def learn():
 
         if cards:
             card = random.choice(cards)
-            return render_template('learn.html', card=card)
+            return render_template('learn.html', card=card, reveal=False)
 
-    # Falls keine Karten vorhanden
     flash('Keine Karteikarten zum Lernen verfügbar.')
     return redirect(url_for('dashboard'))
+
 
 # -----------------------------
 # App starten (nur lokal)

@@ -8,7 +8,7 @@
 
 <p><a href="{{ url_for('add_flashcard') }}">➕ Neue Karteikarte erstellen</a></p> <!-- Link zum Formular, um eine neue Karteikarte anzulegen. href = hypertext reference -->
 <p><a href="{{ url_for('logout') }}">🚪 Logout</a></p>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
-<p><a href="{{ url_for('learn') }}">📚 Jetzt lernen (Spaced Repetition)</a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn -->
+<p><a href="{{ url_for('learn') }}">📚 Jetzt lernen ! </a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn -->
 
 {% if flashcards %}                                                            <!-- Wenn Karteikarten vorhanden sind, wird eine Tabelle angezeigt -->
     <h3>Deine Karteikarten</h3>                                                 <!-- Unterüberschrift für die Tabelle -->
