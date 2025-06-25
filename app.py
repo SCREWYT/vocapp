@@ -111,13 +111,22 @@ def logout():
 @app.route('/dashboard')
 def dashboard():
     """
-    Geschützter Bereich. Nur sichtbar, wenn eingeloggt.
+    Geschützter Bereich. Zeigt alle Karteikarten des eingeloggten Nutzers.
     """
     if 'user_id' not in session:
         flash('Bitte logge dich ein, um fortzufahren.')
         return redirect(url_for('login'))
 
-    return render_template('dashboard.html', username=session.get('username'))
+    db = get_db()
+    user_id = session['user_id']
+
+    # Alle Karten abrufen, die dem aktuellen Nutzer gehören
+    flashcards = db.execute(
+        'SELECT question, answer FROM flashcards WHERE user_id = ?',
+        (user_id,)
+    ).fetchall()
+
+    return render_template('dashboard.html', username=session.get('username'), flashcards=flashcards)
 
 
 # ----------------------------------
