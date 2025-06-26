@@ -6,37 +6,53 @@
 
 <p>Das ist dein Dashboard.</p>                                            <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer. p = paragraph -->
 
-<p><a href="{{ url_for('add_flashcard') }}">➕ Neue Karteikarte erstellen</a></p> <!-- Link zum Formular, um eine neue Karteikarte anzulegen. href = hypertext reference -->
-<p><a href="{{ url_for('logout') }}">🚪 Logout</a></p>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
-<p><a href="{{ url_for('learn') }}">📚 Jetzt lernen ! </a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn -->
+<!-- Link zur Set-Übersicht, da Karteikarten jetzt über Sets verwaltet werden -->
+<p><a href="{{ url_for('sets_overview') }}">🗂 Zu deinen Karteikartensets</a></p> 
 
-{% if flashcards %}                                                            <!-- Wenn Karteikarten vorhanden sind, wird eine Tabelle angezeigt -->
-    <h3>Deine Karteikarten</h3>                                                 <!-- Unterüberschrift für die Tabelle -->
-    <table border="1" cellpadding="8" cellspacing="0">                           <!-- Tabelle mit Rahmen und etwas Abstand. Padding = Polster des Feldes. Cellspacing = Abstand zwischen Zellen -->
-        <thead>
-            <tr>
-                <th>Frage</th>                                                      <!-- th = Tabellenkopf: Spalte für Fragen -->
-                <th>Antwort</th>                                                     <!-- Tabellenkopf: Spalte für Antworten -->
-                <th>Aktionen</th>                                                    <!-- Tabellenkopf: Spalte für Bearbeiten/Löschen -->
-            </tr>
-        </thead>
-        <tbody>                                                                         <!-- tbody = table body -->
-            {% for card in flashcards %}                                                 <!-- Schleife über alle vorhandenen Karteikarten -->
-                <tr>
-                    <td>{{ card.question }}</td>                                           <!-- Zeigt die Frage an -->
-                    <td>{{ card.answer }}</td>                                              <!-- Zeigt die Antwort an -->
-                    <td>                                                                    <!-- Aktionsspalte: Buttons zum Bearbeiten und Löschen -->
-                        <a href="{{ url_for('edit_flashcard', id=card['id']) }}">Bearbeiten</a>   <!-- Link zur Bearbeitungsseite der Karte -->
-                        <form action="{{ url_for('delete_flashcard', id=card['id']) }}" method="POST" style="display:inline;"> <!-- Formular zum Löschen der Karte, POST-Methode -->
-                            <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>           <!-- Button mit Bestätigungsabfrage -->
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>                                                                            
-    </table>                                                                                    <!-- table = Gesamtcontainer, tbody = Eigentlicher Datenbereich -->
+<!-- Link zum Logout -->
+<p><a href="{{ url_for('logout') }}">🚪 Logout</a></p>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+
+<!-- Link zum Lernmodus (Set-Auswahl) -->
+<p><a href="{{ url_for('learn_select_set') }}">📚 Jetzt lernen !</a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn/sets -->
+
+{# 
+Wenn du möchtest, kannst du hier pro Set eine Tabelle mit den Karten anzeigen,
+ansonsten lieber nur die Links lassen und die Verwaltung über Sets machen.
+#}
+
+{% if sets %}                                                            <!-- Wenn Sets vorhanden sind, kann man hier Listen ausgeben -->
+    {% for set in sets %}
+        <h3>Set: {{ set.name }}</h3>                                    <!-- Überschrift pro Set -->
+        {% if set.flashcards %}
+            <table border="1" cellpadding="8" cellspacing="0">           <!-- Tabelle mit Rahmen und Abstand -->
+                <thead>
+                    <tr>
+                        <th>Frage</th>                                  <!-- Tabellenkopf Frage -->
+                        <th>Antwort</th>                                <!-- Tabellenkopf Antwort -->
+                        <th>Aktionen</th>                               <!-- Tabellenkopf Aktionen -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for card in set.flashcards %}
+                        <tr>
+                            <td>{{ card.question }}</td>                 <!-- Frage anzeigen -->
+                            <td>{{ card.answer }}</td>                   <!-- Antwort anzeigen -->
+                            <td>                                        <!-- Aktionen: bearbeiten, löschen -->
+                                <a href="{{ url_for('edit_flashcard', id=card.id) }}">Bearbeiten</a>
+                                <form action="{{ url_for('delete_flashcard', id=card.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Keine Karteikarten in diesem Set.</p>
+        {% endif %}
+    {% endfor %}
 {% else %}
-    <p>Du hast noch keine Karteikarten erstellt.</p>                                              <!-- Hinweis, falls noch keine Karten vorhanden sind -->
+    <p>Du hast noch keine Karteikartensets erstellt.</p>
 {% endif %}
 
 {% endblock %}                                                                                       <!-- Ende des Inhalts-Blocks – alles zwischen Block und Endblock wird ins Template eingesetzt -->
