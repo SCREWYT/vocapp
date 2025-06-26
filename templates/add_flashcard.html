@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Neue Karteikarte</title>
+</head>
+<body>
+    <h1>Neue Karteikarte erstellen</h1>                          <!-- Seitenüberschrift -->
+
+    <form method="POST" action="{{ url_for('add_flashcard') }}"> <!-- Formular zum Erstellen einer neuen Karte -->
+        <label for="question">Frage:</label><br>
+        <textarea name="question" rows="3" cols="50" required></textarea><br><br> <!-- Eingabefeld für die Frage, rows und cols bestimmten die Größe. Bei 3+ Rows scrollt man dann -->
+
+        <label for="answer">Antwort:</label><br>
+        <textarea name="answer" rows="3" cols="50" required></textarea><br><br>  <!-- Eingabefeld für die Antwort, selbe Logik wie davor -->
+
+        <button type="submit">Karte speichern</button>                        <!-- Absenden-Button -->
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>     <!-- Link zurück zum Dashboard -->
+</body>
+</html>

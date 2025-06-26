@@ -1,11 +1,58 @@
-{% extends "base.html" %}                      <!-- Diese Seite basiert auf base.html = erbt Kopfbereich, Styles, Flash-Nachrichten usw. -->
+{% extends "base.html" %}                                           <!-- Diese Seite basiert auf base.html = erbt Kopfbereich, Styles, Flash-Nachrichten usw. -->
 
-{% block content %}                              <!-- Hier beginnt der Inhalts-Block, der in base.html eingefügt wird -->
+{% block content %}                                                   <!-- Hier beginnt der Inhalts-Block, der in base.html eingefügt wird -->
 
-<h2>Willkommen, {{ username }}!</h2>               <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
+<h2>Willkommen, {{ username }}!</h2>                                    <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
 
-<p>Das ist dein Dashboard.</p>                       <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer -->
+<p>Das ist dein Dashboard.</p>                                            <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer. p = paragraph -->
 
-<a href="{{ url_for('logout') }}">Logout</a>           <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+<!-- Link zur Set-Übersicht, da Karteikarten jetzt über Sets verwaltet werden -->
+<p><a href="{{ url_for('sets_overview') }}">🗂 Zu deinen Karteikartensets</a></p> 
 
-{% endblock %}                                           <!-- Ende des Inhalts-Blocks – alles zwischen Block und Endblock wird ins Template eingesetzt -->
+<!-- Link zum Logout -->
+<p><a href="{{ url_for('logout') }}">🚪 Logout</a></p>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
+
+<!-- Link zum Lernmodus (Set-Auswahl) -->
+<p><a href="{{ url_for('learn_select_set') }}">📚 Jetzt lernen !</a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn/sets -->
+
+{# 
+Wenn du möchtest, kannst du hier pro Set eine Tabelle mit den Karten anzeigen,
+ansonsten lieber nur die Links lassen und die Verwaltung über Sets machen.
+#}
+
+{% if sets %}                                                            <!-- Wenn Sets vorhanden sind, kann man hier Listen ausgeben -->
+    {% for set in sets %}
+        <h3>Set: {{ set.name }}</h3>                                    <!-- Überschrift pro Set -->
+        {% if set.flashcards %}
+            <table border="1" cellpadding="8" cellspacing="0">           <!-- Tabelle mit Rahmen und Abstand -->
+                <thead>
+                    <tr>
+                        <th>Frage</th>                                  <!-- Tabellenkopf Frage -->
+                        <th>Antwort</th>                                <!-- Tabellenkopf Antwort -->
+                        <th>Aktionen</th>                               <!-- Tabellenkopf Aktionen -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for card in set.flashcards %}
+                        <tr>
+                            <td>{{ card.question }}</td>                 <!-- Frage anzeigen -->
+                            <td>{{ card.answer }}</td>                   <!-- Antwort anzeigen -->
+                            <td>                                        <!-- Aktionen: bearbeiten, löschen -->
+                                <a href="{{ url_for('edit_flashcard', id=card.id) }}">Bearbeiten</a>
+                                <form action="{{ url_for('delete_flashcard', id=card.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Keine Karteikarten in diesem Set.</p>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <p>Du hast noch keine Karteikartensets erstellt.</p>
+{% endif %}
+
+{% endblock %}                                                                                       <!-- Ende des Inhalts-Blocks – alles zwischen Block und Endblock wird ins Template eingesetzt -->

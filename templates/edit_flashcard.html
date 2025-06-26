@@ -1,0 +1,26 @@
+<!DOCTYPE html>                                           
+<html lang="de">                                           
+<head>                                                      
+    <meta charset="UTF-8">                                   
+    <title>Karte bearbeiten</title>                           <!-- Titel der Seite im Browser-Tab -->
+</head>
+
+<body>                                                           <!-- HAUPTBEREICH DER SEITE -->
+
+    <h1>Karte bearbeiten</h1>                                      <!-- Hauptüberschrift auf der Seite -->
+
+    <form method="POST">                                             <!-- Formular zum Bearbeiten der Karteikarte. Wird per POST abgeschickt -->
+        <label for="question">Frage:</label><br>                      <!-- Beschriftung für das Fragefeld -->
+        <textarea name="question" rows="3" cols="50" required>{{ card.question }}</textarea><br><br>
+                                                                        <!-- Textfeld mit 3 sichtbaren Zeilen und 50 Spalten. Der aktuelle Frage-Inhalt wird eingefügt -->
+
+        <label for="answer">Antwort:</label><br>                          <!-- Beschriftung für das Antwortfeld -->
+        <textarea name="answer" rows="3" cols="50" required>{{ card.answer }}</textarea><br><br>
+                                                                            <!-- Textfeld mit 3 sichtbaren Zeilen und 50 Spalten. Der aktuelle Antwort-Inhalt wird eingefügt -->
+
+        <button type="submit">Änderungen speichern</button>                   <!-- Button zum Absenden des Formulars (speichert die Änderungen) -->
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>         <!-- Link zurück zum Dashboard -->
+</body>
+</html>                                                                            
