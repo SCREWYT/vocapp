@@ -41,6 +41,12 @@ def register():
     if request.method == 'POST':
         username = request.form['username'].strip()
         password = request.form['password']
+        password_confirm = request.form['password_confirm']
+
+        # Passwörter vergleichen
+        if password != password_confirm:
+            flash('Die Passwörter stimmen nicht überein.')
+            return redirect(url_for('register'))
 
         db = get_db()
         cursor = db.cursor()
@@ -67,6 +73,7 @@ def register():
 
     # Bei GET Anfrage Registrierungsformular anzeigen
     return render_template('register.html')
+
 # ----------------------------------
 # Standard-Englischset
 # ----------------------------------
