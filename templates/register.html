@@ -18,13 +18,19 @@
                                                                              <!-- Passwort-Eingabefeld (Verdeckte Eingabe)-->
     </div>
 
-    <button type="submit">Registrieren</button>                                 <!-- Button zum Absenden des Formulars -->
+    <div>                                                                       <!-- DRITTE FORMULARZEILE: Passwort bestätigen -->
+        <label for="password_confirm">Passwort bestätigen:</label>               <!-- Beschriftung für Passwort-Bestätigung -->
+        <input type="password" name="password_confirm" id="password_confirm" required>
+                                                                                   <!-- Passwort-Bestätigungsfeld (Verdeckte Eingabe) -->
+    </div>
+
+    <button type="submit">Registrieren</button>                                       <!-- Button zum Absenden des Formulars -->
 
 </form>
 
-<p>                                                                                 <!-- Hinweis unter dem Formular -->
+<p>                                                                                       <!-- Hinweis unter dem Formular -->
     Bereits ein Konto? 
-    <a href="{{ url_for('login') }}">Zum Login</a>                                    <!-- Link zurück zur Login-Seite (Flask erzeugt URL) -->
+    <a href="{{ url_for('login') }}">Zum Login</a>                                          <!-- Link zurück zur Login-Seite (Flask erzeugt URL) -->
 </p>
 
-{% endblock %}                                        
+{% endblock %}
