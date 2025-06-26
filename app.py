@@ -33,26 +33,78 @@ def index():
 # ----------------------------------
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """
+    Route zur Benutzerregistrierung.
+    GET: Zeigt das Registrierungsformular.
+    POST: Speichert den neuen Nutzer und legt das Standard-Set mit Karten an.
+    """
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].strip()
         password = request.form['password']
 
         db = get_db()
         cursor = db.cursor()
 
+        # Prüfen, ob der Benutzername bereits existiert
         existing = cursor.execute('SELECT id FROM users WHERE username = ?', (username,)).fetchone()
         if existing:
             flash('Benutzername bereits vergeben.')
             return redirect(url_for('register'))
 
+        # Passwort hashen und neuen Nutzer speichern
         hashed_password = generate_password_hash(password)
         cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
         db.commit()
 
+        # User-ID des neu angelegten Nutzers holen
+        user_id = cursor.execute('SELECT id FROM users WHERE username = ?', (username,)).fetchone()['id']
+
+        # Standard-Karteikartenset mit Beispielvokabeln anlegen
+        create_default_english_set(user_id)
+
         flash('Registrierung erfolgreich. Du kannst dich jetzt einloggen.')
         return redirect(url_for('login'))
 
+    # Bei GET Anfrage Registrierungsformular anzeigen
     return render_template('register.html')
+# ----------------------------------
+# Standard-Englischset
+# ----------------------------------
+def create_default_english_set(user_id):
+    db = get_db()
+
+    # Erstellt ein neues Set für den Nutzer
+    db.execute('INSERT INTO sets (user_id, name) VALUES (?, ?)', (user_id, 'Englisch Basiswortschatz'))
+    db.commit()
+
+    # Hole die ID des gerade erstellten Sets
+    set_id = db.execute(
+        'SELECT id FROM sets WHERE user_id = ? AND name = ?',
+        (user_id, 'Englisch Basiswortschatz')
+    ).fetchone()['id']
+
+    # Beispiel-Vokabelliste mit 10 Paaren
+    vocab_list = [
+        ('hello', 'hallo'),
+        ('world', 'Welt'),
+        ('book', 'Buch'),
+        ('car', 'Auto'),
+        ('tree', 'Baum'),
+        ('water', 'Wasser'),
+        ('house', 'Haus'),
+        ('dog', 'Hund'),
+        ('cat', 'Katze'),
+        ('food', 'Essen')
+    ]
+
+    # Karten in die DB einfügen
+    for question, answer in vocab_list:
+        db.execute(
+            'INSERT INTO flashcards (user_id, set_id, question, answer) VALUES (?, ?, ?, ?)',
+            (user_id, set_id, question, answer)
+        )
+    db.commit()
+
 
 # ----------------------------------
 # Login
