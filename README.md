@@ -32,7 +32,7 @@ env\Scripts\activate     # Für Windows
 
 ---
 
-### **Schritt 3: Erforderliche Pakete installieren**
+### **Schritt 3: Erforderliche Pakete installieren und Datenbank initialisieren**
 Installieren Sie alle benötigten Abhängigkeiten mit:
 
 ```bash
@@ -51,7 +51,11 @@ pip install flask
 pip list | findstr flask  # Windows
 pip list | grep flask     # macOS/Linux
 ```
+Initialisieren sie jetzt die Datenbank mit:
 
+```
+flask init-db
+```
 ---
 
 ### **Schritt 4: Anwendung starten**
