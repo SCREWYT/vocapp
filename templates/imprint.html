@@ -1,31 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">                                                             <!-- Sprache auf Englisch gesetzt -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!-- Responsives Design wegen unterschiedlicher Skalierung auf Handy/Laptop etc -->
-    <title>Imprint & Contact</title>                                             <!-- Seitentitel, der im Browser angezeigt wird -->
-    <link rel="stylesheet" href="imprint_styles.css">                             <!-- Verlinkt externe CSS für Design/Stil der Seite -->
-</head>
-<body>                                                                              <!-- SICHTBARER TEIL BEGINNT HIER -->
-    <header>
-        <h1>Imprint & Contact</h1>                                                    <!-- Hauptüberschrift -->
-    </header>                                                                          
-    <main>                                                                              <!-- Hauptbereich der Seite -->
-        <section class="imprint">                                                        <!-- Impressumsbereich, über CSS mit "imprint" Stil versehen -->
-            <h2>Imprint</h2>
-            <p>Company Name: vocapp GmbH</p>                                               <!-- Einige ausgedachte Infos und Kontaktmöglichkeiten für die Seite -->
-            <p>Address: 10585 Blauerstraße, Berlin, Germany</p>
-            <p>Phone: (030) 456-7890</p>
-            <p>Email: <a href="mailto:info@vocapp.com">info@vocapp.com</a></p>
-        </section>
-        <section class="contact">                                                              <!-- Kontaktbereich -->
-            <h2>Contact Us</h2>
-            <p>If you have any questions, feel free to reach out!</p>                            <!-- Infotext für Besucher -->
-            <a href="mailto:info@vocapp.com" class="contact-button">Contact Us</a>                <!-- Kontakt-Button, styled mit CSS (rund, grün, Hover Effekt) -->
-        </section>
-    </main>
-    <footer>                                                                                         <!-- Fußbereich -->
-        <p>&copy; 2023 vocapp GmbH. All rights reserved.</p>                                          <!-- Copyright Verweis, typisch bei Webseiten -->
-    </footer>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Imprint & Contact</h1>
+
+    <p>Company Name: VocApp GmbH</p>
+    <p>Address: 10585 Blauerstraße, Berlin, Germany</p>
+    <p>Phone: (030) 456-7890</p>
+    <p>Email: <a href="mailto:info@vocapp.com">info@vocapp.com</a></p>
+    <p>If you have any questions, feel free to reach out!</p>
+    <a href="mailto:info@vocapp.com" class="contact-button">Contact Us</a>
+{% endblock %}
