@@ -25,7 +25,8 @@ cd VocApp
 Bevor Sie Abhängigkeiten installieren, richten Sie eine virtuelle Umgebung ein und aktivieren Sie diese:
 
 ```bash
-python -m venv env
+python3 -m venv env  # Für macOS/Linux
+python -m venv env   # Für Windows
 source env/bin/activate  # Für macOS/Linux
 env\Scripts\activate     # Für Windows
 ```
