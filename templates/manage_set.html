@@ -8,13 +8,13 @@
     <!-- Formular zum Hinzufügen -->
     <h2>Neue Karte hinzufügen</h2>                                                                <!-- Unterüberschrift für das Formular -->
     <form method="POST" action="{{ url_for('manage_set', set_id=set_obj.id) }}">                   <!-- Formular zum Hinzufügen einer neuen Karte zum Set -->
-        <label for="question">Frage:</label><br />                                                  <!-- Beschriftung für das Fragenfeld -->
+        <label for="question">Fremdsprachvokabel:</label><br />                                                  <!-- Beschriftung für das Fragenfeld -->
         <textarea name="question" rows="3" cols="50" required></textarea><br /><br />                <!-- Mehrzeiliges Texteingabefeld für die Frage, Pflichtfeld -->
 
-        <label for="answer">Antwort:</label><br />                                                     <!-- Beschriftung für das Antwortfeld -->
+        <label for="answer">Deutsche Vokabel:</label><br />                                                     <!-- Beschriftung für das Antwortfeld -->
         <textarea name="answer" rows="3" cols="50" required></textarea><br /><br />                     <!-- Mehrzeiliges Texteingabefeld für die Antwort, Pflichtfeld -->
 
-        <button type="submit">Karte speichern</button>                                                    <!-- Absende-Button zum Speichern der Karte -->
+        <button type="submit">Karte speichern</button> <br />                                                <!-- Absende-Button zum Speichern der Karte -->
     </form>
 
     <hr />                                                                                                   <!-- Horizontale Linie als Trennung -->
@@ -25,8 +25,8 @@
         <table border="1" cellpadding="8" cellspacing="0">                                                        <!-- Tabelle mit Rahmen und Abständen -->
             <thead>
                 <tr>
-                    <th>Frage</th>                                                                                   <!-- Tabellenkopf: Spalte Frage -->
-                    <th>Antwort</th>                                                                                  <!-- Tabellenkopf: Spalte Antwort -->
+                    <th>Fremdsprachvokabel</th>                                                                                   <!-- Tabellenkopf: Spalte Frage -->
+                    <th>Deutsche Vokabel</th>                                                                                  <!-- Tabellenkopf: Spalte Antwort -->
                     <th>Aktionen</th>                                                                                  <!-- Tabellenkopf: Spalte Aktionen -->
                 </tr>
             </thead>
@@ -45,9 +45,11 @@
                 {% endfor %}
             </tbody>
         </table>
-    {% else %}                                                                                                                    <!-- Falls keine Karten vorhanden sind -->
-        <p>Dieses Set enthält noch keine Karteikarten.</p>                                                                        <!-- Hinweistext, wenn keine Karten da sind -->
+    {% else %}                                                                                                                    
+    <p style="text-align: center;">Dieses Set enthält noch keine Karteikarten.</p>                                                                
     {% endif %}
 
-    <p><a href="{{ url_for('sets_overview') }}">← Zurück zu den Sets</a></p>                                                      <!-- Link zurück zur Set-Übersicht -->
+<div class="back-link-container">
+    <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zu den Sets</a>
+</div>
 {% endblock %}

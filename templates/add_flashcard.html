@@ -19,7 +19,7 @@
     <button type="submit">Karte speichern</button>
 </form>
 
-<p style="margin-top: 20px;">
-    <a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a>
-</p>
+<div class="back-link-container">
+    <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zu den Sets</a>
+</div>
 {% endblock %}

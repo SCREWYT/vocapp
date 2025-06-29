@@ -4,17 +4,9 @@
 
 <h2>Willkommen, {{ username }}!</h2>                                    <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
 
-<p>Das ist dein Dashboard.</p>                                            <!-- Kurzer Erklärungstext oder Hinweis für den Nutzer. p = paragraph -->
-
-<!-- Link zur Set-Übersicht, da Karteikarten jetzt über Sets verwaltet werden -->
-<p><a href="{{ url_for('sets_overview') }}">🗂 Zu deinen Karteikartensets</a></p> 
-
-<!-- Link zum Lernmodus (Set-Auswahl) -->
-<p><a href="{{ url_for('learn_select_set') }}">📚 Jetzt lernen !</a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn/sets -->
-
-{# 
-Wenn du möchtest, kannst du hier pro Set eine Tabelle mit den Karten anzeigen,
-ansonsten lieber nur die Links lassen und die Verwaltung über Sets machen.
-#}
+<div class="button-link-group">
+    <a href="{{ url_for('learn_select_set') }}" class="button-link wide">📚 Jetzt lernen!</a>
+    <a href="{{ url_for('sets_overview') }}" class="button-link wide"> 📖 Zu deinen Karteikartensets</a>
+</div>
 
 {% endblock %}

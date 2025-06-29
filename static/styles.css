@@ -280,3 +280,38 @@ td button:hover {
     opacity: 0.8;
 }
 
+.button-link-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #a8e6cf, #88d8c0);
+    color: #2c5530;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    width: 250px;
+}
+
+.button-link:hover {
+    background: linear-gradient(135deg, #76cbb3, #5ca995);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.back-link-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+

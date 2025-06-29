@@ -30,5 +30,7 @@
     {% endif %}
 </div>
 
-<p style="margin-top: 25px;"><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>
+<div class="back-link-container">
+    <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zur Startseite</a>
+</div>
 {% endblock %}
