@@ -1,26 +1,23 @@
-<!DOCTYPE html>                                           
-<html lang="de">                                           
-<head>                                                      
-    <meta charset="UTF-8">                                   
-    <title>Karte bearbeiten</title>                           <!-- Titel der Seite im Browser-Tab -->
-</head>
+{% extends "base.html" %}
 
-<body>                                                           <!-- HAUPTBEREICH DER SEITE -->
+{% block content %}
+    <h2>Karte bearbeiten</h2>
 
-    <h1>Karte bearbeiten</h1>                                      <!-- Hauptüberschrift auf der Seite -->
+    <form method="POST">
+        <div>
+            <label for="question">Frage:</label>
+            <textarea name="question" rows="3" cols="50" required>{{ card.question }}</textarea>
+        </div>
 
-    <form method="POST">                                             <!-- Formular zum Bearbeiten der Karteikarte. Wird per POST abgeschickt -->
-        <label for="question">Frage:</label><br>                      <!-- Beschriftung für das Fragefeld -->
-        <textarea name="question" rows="3" cols="50" required>{{ card.question }}</textarea><br><br>
-                                                                        <!-- Textfeld mit 3 sichtbaren Zeilen und 50 Spalten. Der aktuelle Frage-Inhalt wird eingefügt -->
+        <div>
+            <label for="answer">Antwort:</label>
+            <textarea name="answer" rows="3" cols="50" required>{{ card.answer }}</textarea>
+        </div>
 
-        <label for="answer">Antwort:</label><br>                          <!-- Beschriftung für das Antwortfeld -->
-        <textarea name="answer" rows="3" cols="50" required>{{ card.answer }}</textarea><br><br>
-                                                                            <!-- Textfeld mit 3 sichtbaren Zeilen und 50 Spalten. Der aktuelle Antwort-Inhalt wird eingefügt -->
-
-        <button type="submit">Änderungen speichern</button>                   <!-- Button zum Absenden des Formulars (speichert die Änderungen) -->
+        <button type="submit">Änderungen speichern</button>
     </form>
 
-    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>         <!-- Link zurück zum Dashboard -->
-</body>
-</html>                                                                            
+    <div class="register-link">
+        <a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a>
+    </div>
+{% endblock %}

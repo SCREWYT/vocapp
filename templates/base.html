@@ -1,26 +1,42 @@
-<!DOCTYPE html>                                          <!-- Sagt dem Browser, dass man HTML5 verwendet -->
-<html>                                                    <!-- Beginn des HTML-Dokuments -->
-
-<head>                                                      <!-- KOPFTEIL DER SEITE (Enthält alle unsichtbaren Elemente wie Titel, Links oder Zeichencodierungen) -->
-    <meta charset="UTF-8">                                   <!-- Zeichencodierung: UTF-8 = unterstützt Umlaute, Sonderzeichen usw. -->
-    <title>{{ title if title else "Login" }}</title>          <!-- Titel der Seite im Browser-Tab. Dynamisch per Jinja gesetzt, sonst Default: "Login" -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"> 
-                                                                <!-- CSS-Datei einbinden. Wird über Flask-Funktion `url_for` geladen -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title if title else "VocApp - Vokabeln lernen" }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>VocApp</h1>
+    </header>
 
-<body>                                                             <!-- HAUPTBEREICH DER SEITE -->
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="login-container">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class="flashes">
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
 
-    {% with messages = get_flashed_messages() %}                     <!-- Flask-Block: Holt Flash-Nachrichten (Fehler, Hinweise) -->
-      {% if messages %}                                               <!-- Wenn Nachrichten vorhanden sind, zeige sie an -->
-        <ul class="flashes">                                           <!-- Ungeordnete Liste mit der CSS-Klasse "flashes" (gestaltet sie optisch) -->
-          {% for message in messages %}                                 <!-- Schleife: Zeigt alle Nachrichten nacheinander als <li>-Elemente -->
-            <li>{{ message }}</li>                                       <!-- Einzelne Nachricht -->
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+            <!-- Page Content -->
+            {% block content %}{% endblock %}
+        </div>
+    </main>
 
-    {% block content %}{% endblock %}                                         <!-- Platzhalter: Hier wird der jeweilige Seiteninhalt (Login, Register etc.) eingefügt -->
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 VocApp - Alle Rechte vorbehalten</p>
+        <p>
+            <a href="{{ url_for('imprint') }}">Impressum</a>
+        </p>
+    </footer>
 </body>
-
-</html>                                                                          <!-- Ende des HTML-Dokuments -->
+</html>

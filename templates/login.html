@@ -1,31 +1,26 @@
-{% extends 'base.html' %}                                    <!-- Diese Seite verwendet das Grundlayout aus base.html -->
+{% extends 'base.html' %}
 
-{% block content %}                                            <!-- Beginn des individuellen Inhaltsbereichs für diese Seite -->
+{% block content %}
 
-<h2>Login</h2>                                                   <!-- Überschrift für das Login-Formular -->
+<h2>Login</h2>
 
-<form method="POST">                                               <!-- Formular mit POST-Methode = Daten werden sicher zum Server geschickt. Gegenteil zu GET -->
-
-    <div>                                                            <!-- ERSTE FORMULARZEILE: Benutzername -->
-        <label for="username">Benutzername:</label>                   <!-- Beschriftung für das Eingabefeld (sichtbar für Nutzer) -->
-        <input type="text" name="username" id="username" required> 
-                                                                       <!-- Eingabefeld für Benutzername, Pflichtfeld -->
+<form method="POST">
+    <div>
+        <label for="username">Benutzername:</label>
+        <input type="text" name="username" id="username" required>
     </div>
 
-    <div>                                                                 <!-- ZWEITE FORMULARZEILE: Passwort -->
-        <label for="password">Passwort:</label>                            <!-- Beschriftung für das Passwortfeld -->
-        <input type="password" name="password" id="password" required> 
-                                                                             <!-- Eingabefeld mit verdeckter Eingabe, Pflichtfeld -->
+    <div>
+        <label for="password">Passwort:</label>
+        <input type="password" name="password" id="password" required>
     </div>
 
-    <button type="submit">Login</button>                                        <!-- Button zum Absenden des Formulars -->
-
+    <button type="submit">Login</button>
 </form>
 
-<p>                                                                                 <!-- Hinweis unter dem Formular -->
+<p class="register-link">
     Noch kein Konto? 
-    <a href="{{ url_for('register') }}">Jetzt registrieren</a> 
-                                                                                       <!-- Link zur Registrierungsseite. URL wird von Flask dynamisch erstellt -->
+    <a href="{{ url_for('register') }}">Jetzt registrieren</a>
 </p>
 
-{% endblock %}                                                                           
+{% endblock %}
