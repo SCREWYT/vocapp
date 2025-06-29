@@ -24,7 +24,6 @@ ansonsten lieber nur die Links lassen und die Verwaltung über Sets machen.
     {% for set in sets %}
         <h3>Set: {{ set.name }}</h3>                                    <!-- Überschrift pro Set -->
         {% if set.flashcards %}
-            <table border="1" cellpadding="8" cellspacing="0">           <!-- Tabelle mit Rahmen und Abstand -->
                 <thead>
                     <tr>
                         <th>Frage</th>                                  <!-- Tabellenkopf Frage -->
@@ -38,7 +37,9 @@ ansonsten lieber nur die Links lassen und die Verwaltung über Sets machen.
                             <td>{{ card.question }}</td>                 <!-- Frage anzeigen -->
                             <td>{{ card.answer }}</td>                   <!-- Antwort anzeigen -->
                             <td>                                        <!-- Aktionen: bearbeiten, löschen -->
-                                <a href="{{ url_for('edit_flashcard', id=card.id) }}">Bearbeiten</a>
+                                <form action="{{ url_for('edit_flashcard', id=card.id) }}" method="GET" style="display:inline;">
+    <button type="submit">Bearbeiten</button>
+</form>
                                 <form action="{{ url_for('delete_flashcard', id=card.id) }}" method="POST" style="display:inline;">
                                     <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>
                                 </form>
