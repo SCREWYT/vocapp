@@ -9,9 +9,6 @@
 <!-- Link zur Set-Übersicht, da Karteikarten jetzt über Sets verwaltet werden -->
 <p><a href="{{ url_for('sets_overview') }}">🗂 Zu deinen Karteikartensets</a></p> 
 
-<!-- Link zum Logout -->
-<p><a href="{{ url_for('logout') }}">🚪 Logout</a></p>                              <!-- Link, der zur Logout-Funktion führt. Die URL wird mit Flask/Jinja automatisch generiert -->
-
 <!-- Link zum Lernmodus (Set-Auswahl) -->
 <p><a href="{{ url_for('learn_select_set') }}">📚 Jetzt lernen !</a></p>    <!-- Link zum Lernmodus. Führt zur Route /learn/sets -->
 

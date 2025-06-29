@@ -257,3 +257,26 @@ td button {
 td button:hover {
     background: linear-gradient(135deg, #76cbb3, #5ca995);
 }
+
+/* === HEADER-NAVIGATION RECHTS === */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.header-nav a {
+    margin-left: 20px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.header-nav a:hover {
+    opacity: 0.8;
+}
+

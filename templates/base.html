@@ -11,8 +11,14 @@
 <body>
     <!-- HEADER -->
     <header>
+    <div class="header-container">
         <h1>VocApp</h1>
-    </header>
+        <nav class="header-nav">
+            <a href="{{ url_for('dashboard') }}">🏠 Startseite</a>
+            <a href="{{ url_for('logout') }}">🚪 Logout</a>
+        </nav>
+    </div>
+</header>
 
     <!-- MAIN CONTENT -->
     <main>
