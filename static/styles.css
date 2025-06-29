@@ -1,4 +1,4 @@
-/* === RESET & GLOBAL === */
+/* === Optimized with ChatGPT Chat 29.06.2025 1 === */
 * {
     margin: 0;
     padding: 0;
@@ -199,44 +199,4 @@ footer p {
     h1, h2 {
         font-size: 1.5em;
     }
-}
-.flashcard {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    text-align: center;
-    transition: transform 0.2s ease;
-}
-
-.flashcard:hover {
-    transform: translateY(-3px);
-}
-
-.flashcard .label {
-    color: #555;
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 1rem;
-}
-
-.flashcard .question,
-.flashcard .answer {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #2c5530;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.button-group button {
-    width: auto;
-    padding: 12px 24px;
 }

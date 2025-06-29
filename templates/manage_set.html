@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8" />                                          
+     {% extends "base.html" %}
+
+{% block content %}                                 
     <title>Karteikarten verwalten – {{ set_obj.name }}</title>                              <!-- Seitentitel zeigt den Namen des aktuellen Sets -->
-</head>
-<body>
+
     <h1>Karteikarten im Set: "{{ set_obj.name }}"</h1>                                         <!-- Hauptüberschrift mit dem Namen des Sets -->
 
     <!-- Formular zum Hinzufügen -->
@@ -52,5 +50,4 @@
     {% endif %}
 
     <p><a href="{{ url_for('sets_overview') }}">← Zurück zu den Sets</a></p>                                                      <!-- Link zurück zur Set-Übersicht -->
-</body>
-</html>
+{% endblock %}
