@@ -1,34 +1,34 @@
-<!DOCTYPE html>                                          
-<html lang="de">                                         
-<head>
-    <meta charset="UTF-8">                               
-    <title>Lernen</title>                                
-</head>
-<body>                                                   
+{% extends "base.html" %}
 
-    <h1>Karteikarten lernen</h1>                          
+{% block title %}Karteikarten lernen{% endblock %}
 
-    <p><strong>Frage:</strong></p>                        <!-- Label: zeigt, dass die nächste Zeile die Frage enthält -->
-    <p>{{ card.question }}</p>                            <!-- Zeigt die Frage der Karte an -->
+{% block content %}
+<h1>Karteikarten lernen</h1>
+
+<div class="flashcard">
+    <p class="label">Frage:</p>
+    <p class="question">{{ card.question }}</p>
 
     {% if not reveal %}
-        <form method="POST">                              <!-- Formular zum Anzeigen der Antwort -->
-            <input type="hidden" name="card_id" value="{{ card.id }}">   <!-- Verstecktes Feld zur Übergabe der ID der aktuellen Karte -->
-            <button type="submit" name="show_answer">Antwort anzeigen</button> <!-- Button: Antwort anzeigen -->
+        <form method="POST">
+            <input type="hidden" name="card_id" value="{{ card.id }}">
+            <button type="submit" name="show_answer">Antwort anzeigen</button>
         </form>
     {% else %}
-        <form method="POST">                              <!-- Formular zum Absenden der Antwortbewertung (ob gewusst oder nicht) -->
-            <input type="hidden" name="card_id" value="{{ card.id }}">   <!-- Verstecktes Feld zur Übergabe der ID der aktuellen Karte -->
+        <form method="POST">
+            <input type="hidden" name="card_id" value="{{ card.id }}">
 
-            <p><strong>Antwort anzeigen:</strong> {{ card.answer }}</p>  <!-- Zeigt die Antwort zur Frage direkt darunter an -->
+            <p class="label">Antwort:</p>
+            <p class="answer">{{ card.answer }}</p>
 
-            <p>Hast du die Antwort gewusst?</p>           <!-- Fragt den Nutzer, ob die Antwort gewusst wurde -->
-
-            <button type="submit" name="result" value="correct">✅ Ja</button>   <!-- Button: Antwort wurde gewusst, setzt Wert "correct" -->
-            <button type="submit" name="result" value="wrong">❌ Nein</button>   <!-- Button: Antwort wurde nicht gewusst, setzt Wert "wrong" -->
+            <p class="label">Hast du die Antwort gewusst?</p>
+            <div class="button-group">
+                <button type="submit" name="result" value="correct">✅ Ja</button>
+                <button type="submit" name="result" value="wrong">❌ Nein</button>
+            </div>
         </form>
     {% endif %}
+</div>
 
-    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>    <!-- Link zurück zur Übersichtsseite -->
-</body>
-</html>
+<p style="margin-top: 25px;"><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>
+{% endblock %}
