@@ -5,32 +5,31 @@
 {% block content %}
 <h1>Karteikarten lernen</h1>
 
-<div class="flashcard">
-    <p class="label">Frage:</p>
-    <p class="question">{{ card.question }}</p>
+<div class="flashcard-container">
+    <div class="flashcard-box">
+        <p class="label">Fremdsprachvokabel:</p>
+        <p class="question">{{ card.question }}</p>
 
-    {% if not reveal %}
-        <form method="POST">
-            <input type="hidden" name="card_id" value="{{ card.id }}">
-            <button type="submit" name="show_answer">Antwort anzeigen</button>
-        </form>
-    {% else %}
-        <form method="POST">
-            <input type="hidden" name="card_id" value="{{ card.id }}">
-
-            <p class="label">Antwort:</p>
+        {% if not reveal %}
+            <form method="POST">
+                <input type="hidden" name="card_id" value="{{ card.id }}">
+                <button type="submit" name="show_answer">💡 Antwort anzeigen</button>
+            </form>
+        {% else %}
+            <p class="label">Deutsche Vokabel:</p>
             <p class="answer">{{ card.answer }}</p>
 
             <p class="label">Hast du die Antwort gewusst?</p>
-            <div class="button-group">
+            <form method="POST" class="button-group">
+                <input type="hidden" name="card_id" value="{{ card.id }}">
                 <button type="submit" name="result" value="correct">✅ Ja</button>
                 <button type="submit" name="result" value="wrong">❌ Nein</button>
-            </div>
-        </form>
-    {% endif %}
-</div>
+            </form>
+        {% endif %}
+    </div>
 
-<div class="back-link-container">
-    <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zur Startseite</a>
+    <div class="back-link-container">
+        <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zur Startseite</a>
+    </div>
 </div>
 {% endblock %}
