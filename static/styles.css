@@ -184,3 +184,24 @@ footer a:hover {
         padding: 20px 10px;
     }
 }
+ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+ul li a {
+    color: #2c5530;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+ul li a:hover {
+    color: #88d8c0;
+    text-decoration: underline;
+}
+

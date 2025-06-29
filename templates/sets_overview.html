@@ -1,31 +1,32 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8" />                                  
-    <title>Karteikartensets</title>                                           <!-- Seitentitel, wird im Browser-Tab angezeigt -->
-</head>
-<body>
-    <h1>Deine Karteikartensets</h1>                                              <!-- Hauptüberschrift der Seite -->
+{% extends "base.html" %}
 
-    <form method="POST" action="{{ url_for('sets_overview') }}">                   <!-- Formular zum Erstellen eines neuen Sets; sendet POST an sets_overview -->
-        <label for="set_name">Neues Set erstellen:</label><br />                    <!-- Beschriftung für das Eingabefeld -->
-        <input type="text" name="set_name" id="set_name" required />                 <!-- Eingabefeld für den Namen des neuen Sets, Pflichtfeld -->
-        <button type="submit">Anlegen</button>                                        <!-- Absende-Button für das Formular -->
-    </form>
+{% block title %}Karteikartensets{% endblock %}
 
-    <h2>Bestehende Sets:</h2>                                                            <!-- Überschrift für die Liste der vorhandenen Sets -->
-    {% if sets %}                                                                         <!-- Prüft, ob Sets vorhanden sind -->
-        <ul>                                                                               <!-- Ungeordnete Liste zur Anzeige der Sets -->
-            {% for s in sets %}                                                             <!-- Schleife über alle Sets -->
-                <li>                                                                         <!-- Listenelement pro Set -->
-                    <a href="{{ url_for('manage_set', set_id=s['id']) }}">{{ s['name'] }}</a> <!-- Link zum Verwalten/Anzeigen des Sets mit Set-ID -->
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}                                                                                    <!-- Falls keine Sets vorhanden sind -->
-        <p>Du hast noch keine Sets erstellt.</p>                                                   <!-- Hinweistext, wenn keine Sets vorhanden -->
-    {% endif %}
+{% block content %}
 
-    <p><a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a></p>                              <!-- Link zurück zur Dashboard-Seite -->
-</body>
-</html>
+
+<h2>Bestehende Sets:</h2>
+
+{% if sets %}
+    <ul>
+        {% for s in sets %}
+            <li>
+                <a href="{{ url_for('manage_set', set_id=s['id']) }}">{{ s['name'] }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Du hast noch keine Sets erstellt.</p>
+{% endif %}
+
+<form method="POST" action="{{ url_for('sets_overview') }}">
+    <div>
+        <label for="set_name">Neues Set erstellen:</label>
+        <input type="text" name="set_name" id="set_name" required />
+        <button type="submit">Anlegen</button>
+    </div>
+</form>
+<p style="margin-top: 20px;">
+    <a href="{{ url_for('dashboard') }}">Zurück zum Dashboard</a>
+</p>
+{% endblock %}
