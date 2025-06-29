@@ -118,6 +118,9 @@ def create_default_english_set(user_id):
 # ----------------------------------
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if 'user_id' in session:
+        return redirect(url_for('dashboard'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -134,6 +137,7 @@ def login():
             flash('Ungültiger Benutzername oder Passwort.')
 
     return render_template('login.html')
+
 
 # ----------------------------------
 # Logout
