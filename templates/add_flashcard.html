@@ -2,24 +2,39 @@
 
 {% block title %}Neue Karteikarte{% endblock %}
 
+{# Hauptinhalt der Seite – dieser Block ersetzt den 'content'-Bereich in base.html #}
 {% block content %}
+
+
 <h1>Neue Karteikarte erstellen</h1>
 
+{# Formular zum Erstellen einer neuen Karteikarte #}
+{# Wird per POST an die URL gesendet, die mit 'add_flashcard' verknüpft ist #}
 <form method="POST" action="{{ url_for('add_flashcard') }}">
+
+    {# Eingabefeld für die Frage #}
     <div>
         <label for="question">Frage:</label>
         <textarea name="question" id="question" rows="3" required></textarea>
+        {# 'required' sorgt dafür, dass das Feld nicht leer abgesendet werden kann #}
     </div>
 
+    {# Eingabefeld für die Antwort #}
     <div>
         <label for="answer">Antwort:</label>
         <textarea name="answer" id="answer" rows="3" required></textarea>
     </div>
 
+    {# Absende-Button zum Speichern der Karte #}
     <button type="submit">Karte speichern</button>
 </form>
 
+{# Rück-Link zum Dashboard mit Button-Styling #}
 <div class="back-link-container">
     <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zu den Sets</a>
 </div>
+
 {% endblock %}
+
+
+

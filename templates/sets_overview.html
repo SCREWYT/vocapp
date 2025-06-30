@@ -4,29 +4,38 @@
 
 {% block content %}
 
-
 <h2>Bestehende Sets:</h2>
 
 {% if sets %}
+
     <ul>
         {% for s in sets %}
+            {# Wenn es Sets gibt, wird für jedes ein Listeneintrag generiert #}
             <li>
                 <a href="{{ url_for('manage_set', set_id=s['id']) }}">{{ s['name'] }}</a>
+                {# Link zur Verwaltung eines bestimmten Sets. Die ID wird mitgegeben. #}
             </li>
         {% endfor %}
     </ul>
+
 {% else %}
+    {# Falls keine Sets vorhanden sind #}
     <p>Du hast noch keine Sets erstellt.</p>
 {% endif %}
 
+{# Formular zum Erstellen eines neuen Sets #}
 <form method="POST" action="{{ url_for('sets_overview') }}">
     <div>
         <label for="set_name">Neues Set erstellen:</label>
         <input type="text" name="set_name" id="set_name" required />
+        {# Eingabefeld für den Namen des neuen Sets, Pflichtfeld #}
         <button type="submit">Anlegen</button>
+        {# Absenden des Formulars → neues Set wird angelegt #}
     </div>
 </form>
+
 <div class="back-link-container">
     <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zur Startseite</a>
 </div>
+
 {% endblock %}

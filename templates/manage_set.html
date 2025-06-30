@@ -1,43 +1,57 @@
 {% extends "base.html" %}
 
-{% block content %}                                 
-    <title>Karteikarten verwalten – {{ set_obj.name }}</title>                              <!-- Seitentitel zeigt den Namen des aktuellen Sets -->
+{% block content %}
 
-    <h1>Karteikarten im Set: "{{ set_obj.name }}"</h1>                                         <!-- Hauptüberschrift mit dem Namen des Sets -->
+    {# Seitentitel dynamisch mit Set-Namen #}
+    <title>Karteikarten verwalten – {{ set_obj.name }}</title>
 
-    <!-- Formular zum Hinzufügen -->
-    <h2>Neue Karte hinzufügen</h2>                                                                <!-- Unterüberschrift für das Formular -->
-    <form method="POST" action="{{ url_for('manage_set', set_id=set_obj.id) }}">                   <!-- Formular zum Hinzufügen einer neuen Karte zum Set -->
-        <label for="question">Fremdsprachvokabel:</label><br />                                                  <!-- Beschriftung für das Fragenfeld -->
-        <textarea name="question" rows="3" cols="50" required></textarea><br /><br />                <!-- Mehrzeiliges Texteingabefeld für die Frage, Pflichtfeld -->
+    {# Hauptüberschrift mit Set-Namen #}
+    <h1>Karteikarten im Set: "{{ set_obj.name }}"</h1>
 
-        <label for="answer">Deutsche Vokabel:</label><br />                                                     <!-- Beschriftung für das Antwortfeld -->
-        <textarea name="answer" rows="3" cols="50" required></textarea><br /><br />                     <!-- Mehrzeiliges Texteingabefeld für die Antwort, Pflichtfeld -->
+    {# Formular zum Hinzufügen neuer Karteikarte #}
+    <h2>Neue Karte hinzufügen</h2>
+    <form method="POST" action="{{ url_for('manage_set', set_id=set_obj.id) }}">
+        {# Beim Absenden wird das Formular an die Route 'manage_set' geschickt, mit ID des aktuellen Sets #}
 
-        <button type="submit">Karte speichern</button> <br />                                                <!-- Absende-Button zum Speichern der Karte -->
+        {# Eingabefeld für die Frage #}
+        <label for="question">Fremdsprachvokabel:</label><br />
+        <textarea name="question" rows="3" cols="50" required></textarea><br /><br />
+
+        {# Eingabefeld für die Antwort #}
+        <label for="answer">Deutsche Vokabel:</label><br />
+        <textarea name="answer" rows="3" cols="50" required></textarea><br /><br />
+
+        {# Absende-Button #}
+        <button type="submit">Karte speichern</button><br />
     </form>
 
-    <hr />                                                                                                   <!-- Horizontale Linie als Trennung -->
+    {# Trennlinie #}
+    <hr />
 
-    <!-- Bestehende Karten -->
-    <h2>Bestehende Karteikarten</h2>                                                                            <!-- Überschrift für die Liste der vorhandenen Karten -->
-    {% if flashcards %}                                                                                          <!-- Prüft, ob Karten im Set vorhanden sind -->
-        <table border="1" cellpadding="8" cellspacing="0">                                                        <!-- Tabelle mit Rahmen und Abständen -->
+    {# Auflistung bestehender Karteikarten #}
+    <h2>Bestehende Karteikarten</h2>
+
+    {% if flashcards %}
+        {# Wenn bereits Karten vorhanden sind soll für jede Karte eine Tabellenzeile angezeigt werden #}
+        <table border="1" cellpadding="8" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Fremdsprachvokabel</th>                                                                                   <!-- Tabellenkopf: Spalte Frage -->
-                    <th>Deutsche Vokabel</th>                                                                                  <!-- Tabellenkopf: Spalte Antwort -->
-                    <th>Aktionen</th>                                                                                  <!-- Tabellenkopf: Spalte Aktionen -->
+                    <th>Fremdsprachvokabel</th>
+                    <th>Deutsche Vokabel</th>
+                    <th>Aktionen</th>
                 </tr>
             </thead>
             <tbody>
-                {% for card in flashcards %}                                                                               <!-- Schleife über alle Karten -->
+                {% for card in flashcards %}
                     <tr>
-                        <td>{{ card.question }}</td>                                                                         <!-- Zeigt die Frage an -->
-                        <td>{{ card.answer }}</td>                                                                            <!-- Zeigt die Antwort an -->
+                        <td>{{ card.question }}</td>
+                        <td>{{ card.answer }}</td>
                         <td>
                             <div class="action-buttons">
+                                {# Link zum Bearbeiten der Karte #}
                                 <a href="{{ url_for('edit_flashcard', id=card.id) }}" class="table-action-button">Bearbeiten</a>
+
+                                {# Formular zum Löschen der Karte #}
                                 <form action="{{ url_for('delete_flashcard', id=card.id) }}" method="POST">
                                     <button type="submit" onclick="return confirm('Karte wirklich löschen?')">Löschen</button>
                                 </form>
@@ -47,11 +61,13 @@
                 {% endfor %}
             </tbody>
         </table>
-    {% else %}                                                                                                                    
-    <p style="text-align: center;">Dieses Set enthält noch keine Karteikarten.</p>                                                                
+    {% else %}
+        {# Falls noch keine Karten im Set vorhanden sind... #}
+        <p style="text-align: center;">Dieses Set enthält noch keine Karteikarten.</p>
     {% endif %}
 
-<div class="back-link-container">
-    <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zu den Sets</a>
-</div>
+    <div class="back-link-container">
+        <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zu den Sets</a>
+    </div>
+
 {% endblock %}

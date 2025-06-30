@@ -1,12 +1,17 @@
-{% extends "base.html" %}                                           <!-- Diese Seite basiert auf base.html = erbt Kopfbereich, Styles, Flash-Nachrichten usw. -->
+{% extends "base.html" %}
 
-{% block content %}                                                   <!-- Hier beginnt der Inhalts-Block, der in base.html eingefügt wird -->
+{% block content %}
 
-<h2>Willkommen, {{ username }}!</h2>                                    <!-- Überschrift mit personalisierter Begrüßung: Der Nutzername wird durch Jinja dynamisch eingesetzt -->
+<h2>Willkommen, {{ username }}!</h2> {# "username" wird durch aktuellen Nutzernamen ausgetauscht #}
 
 <div class="button-link-group">
+
     <a href="{{ url_for('learn_select_set') }}" class="button-link wide">📚 Jetzt lernen!</a>
+    {# Link zur Lernseite (Set-Auswahl), gestylt als Button mit Icon #}
+
     <a href="{{ url_for('sets_overview') }}" class="button-link wide"> 📖 Zu deinen Karteikartensets</a>
+    {# Link zur Übersicht aller Sets des Users, ebenfalls als Button #}
 </div>
 
 {% endblock %}
+{# Ende des Inhaltsblocks – alles was hier drinsteht ersetzt den Block in base.html #}

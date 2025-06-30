@@ -1,36 +1,38 @@
-{% extends 'base.html' %}                              
+{% extends 'base.html' %}
 
-{% block content %}                                    
+{% block content %}
 
-<h2>Registrierung</h2>                                          <!-- Überschrift für das Registrierungsformular -->
+<h2>Registrierung</h2>
 
-<form method="POST">                                              <!-- Formular nutzt POST-Methode = Daten werden im Hintergrund sicher gesendet -->
+{# Formular zum Registrieren eines neuen Benutzers #}
+<form method="POST">
 
-    <div>                                                           <!-- ERSTE FORMULARZEILE: Benutzername -->
-        <label for="username">Benutzername:</label>                  <!-- Beschriftung für Eingabe -->
-        <input type="text" name="username" id="username" required> 
-                                                                       <!-- Eingabefeld für Benutzername -->
+    {# Eingabefeld: Benutzername #}
+    <div>
+        <label for="username">Benutzername:</label>
+        <input type="text" name="username" id="username" required>
     </div>
 
-    <div>                                                                 <!-- ZWEITE FORMULARZEILE: Passwort -->
-        <label for="password">Passwort:</label>                            <!-- Beschriftung für Passwort-Eingabe -->
-        <input type="password" name="password" id="password" required> 
-                                                                             <!-- Passwort-Eingabefeld (Verdeckte Eingabe)-->
+    {# Eingabefeld: Passwort #}
+    <div>
+        <label for="password">Passwort:</label>
+        <input type="password" name="password" id="password" required>
+        {# type="password" von HTML selbst = Eingabe wird ausgeblendet #}
     </div>
 
-    <div>                                                                       <!-- DRITTE FORMULARZEILE: Passwort bestätigen -->
-        <label for="password_confirm">Passwort bestätigen:</label>               <!-- Beschriftung für Passwort-Bestätigung -->
+    {# Eingabefeld: Passwort bestätigen #}
+    <div>
+        <label for="password_confirm">Passwort bestätigen:</label>
         <input type="password" name="password_confirm" id="password_confirm" required>
-                                                                                   <!-- Passwort-Bestätigungsfeld (Verdeckte Eingabe) -->
     </div>
 
-    <button type="submit">Registrieren</button>                                       <!-- Button zum Absenden des Formulars -->
-
+    {# Absende-Button, submit auch fest bei HTML #}
+    <button type="submit">Registrieren</button>
 </form>
 
-<p>                                                                                       <!-- Hinweis unter dem Formular -->
-    Bereits ein Konto? 
-    <a href="{{ url_for('login') }}">Zum Login</a>                                          <!-- Link zurück zur Login-Seite (Flask erzeugt URL) -->
+<p>
+    Bereits ein Konto?
+    <a href="{{ url_for('login') }}">Zum Login</a>
 </p>
 
 {% endblock %}

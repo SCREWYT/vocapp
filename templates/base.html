@@ -1,51 +1,71 @@
- <!-- Optimized with ClaudeAI Chat 29.06.2025 1 -->
+{# Optimized with ClaudeAI Chat 29.06.2025 1 #}
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
+
+    {# Responsives Verhalten auf Mobilgeräten #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# Titel oben bei den Tabs #}
+    {# Wenn eine Variable 'title' übergeben wurde, wird sie angezeigt, sonst Standardtitel #}
     <title>{{ title if title else "VocApp - Vokabeln lernen" }}</title>
+
+    {# Verlinkt externe CSS-Datei #}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
-    <!-- HEADER -->
+
+    {# ========== HEADER-BEREICH ========== #}
     <header>
-    <div class="header-container">
-        <h1>VocApp</h1>
-        <nav class="header-nav">
-    {% if session.get('user_id') %}
-        <a href="{{ url_for('dashboard') }}">🏠 Startseite</a>
-        <a href="{{ url_for('logout') }}">🚪 Logout</a>
-    {% endif %}
-</nav>
+        <div class="header-container">
 
-    </div>
-</header>
+            {# Titel der App #}
+            <h1>VocApp</h1>
 
-    <!-- MAIN CONTENT -->
+            {# Navigation oben rechts #}
+            <nav class="header-nav">
+
+                {# Wird nur angezeigt, wenn ein Benutzer eingeloggt ist #}
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('dashboard') }}">🏠 Startseite</a>
+                    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+                {% endif %}
+
+            </nav>
+        </div>
+    </header>
+
+    {# ========== HAUPTBEREICH ========== #}
     <main>
         <div class="login-container">
-            <!-- Flash Messages -->
+
+            {# Flash-Nachrichten (z. B. „Erfolgreich gespeichert“) #}
             {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                <ul class="flashes">
-                  {% for message in messages %}
-                    <li>{{ message }}</li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>  {# Gibt jede Nachricht als Listenelement aus #}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             {% endwith %}
 
-            <!-- Page Content -->
+            {# Hier wird der individuelle Seiteninhalt eingefügt #}
+            {# Jede HTML-Datei, die von base.html erbt, ersetzt diesen Block #}
             {% block content %}{% endblock %}
-            
         </div>
     </main>
 
-    <!-- FOOTER -->
+    {# ========== FUSSBEREICH ========== #}
     <footer>
+        {# Copyright-Text #}
         <p>&copy; 2025 VocApp - Alle Rechte vorbehalten</p>
+
+        {# Link zum Impressum #}
         <p>
             <a href="{{ url_for('imprint') }}">Impressum</a>
         </p>

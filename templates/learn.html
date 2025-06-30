@@ -3,33 +3,55 @@
 {% block title %}Karteikarten lernen{% endblock %}
 
 {% block content %}
+
 <h1>Karteikarten lernen</h1>
 
 <div class="flashcard-container">
     <div class="flashcard-box">
+
         <p class="label">Fremdsprachvokabel:</p>
+
         <p class="question">{{ card.question }}</p>
 
         {% if not reveal %}
+        {# Wenn die Antwort noch nicht angezeigt werden soll... #}
+
+            {# Formular zum Anzeigen der Antwort #}
             <form method="POST">
+                {# Verstecktes Feld mit der Karten-ID #}
                 <input type="hidden" name="card_id" value="{{ card.id }}">
+                {# Button: Antwort anzeigen #}
                 <button type="submit" name="show_answer">💡 Antwort anzeigen</button>
             </form>
+
         {% else %}
+        {# Wenn die Antwort bereits angezeigt wird... #}
+
+            {# Beschriftung und Antwort #}
             <p class="label">Deutsche Vokabel:</p>
             <p class="answer">{{ card.answer }}</p>
 
+            {# Frage nach der Richtigkeit #}
             <p class="label">Hast du die Antwort gewusst?</p>
+
+            {# Formular mit Buttons für "richtig" oder "falsch" #}
             <form method="POST" class="button-group">
+                {# Wieder Karten-ID übergeben #}
                 <input type="hidden" name="card_id" value="{{ card.id }}">
+                {# Button: richtig #}
                 <button type="submit" name="result" value="correct">✅ Ja</button>
+                {# Button: falsch #}
                 <button type="submit" name="result" value="wrong">❌ Nein</button>
             </form>
+
         {% endif %}
+
     </div>
 
     <div class="back-link-container">
         <a href="{{ url_for('dashboard') }}" class="button-link">⬅ Zurück zur Startseite</a>
     </div>
+
 </div>
+
 {% endblock %}
