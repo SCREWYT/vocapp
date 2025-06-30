@@ -1,7 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+# render_template = HTML-Dateien laden und anzeigen
+# request = Zugriff auf Formulardaten (z. B. POST)
+# redirect = Weiterleitung zu anderer Route
+# url_for = URL aus Funktionsnamen erstellen (z. B. url_for('login') → "/login")
+# session = Daten zwischen Seitenaufrufen speichern (z. B. user_id)
+# flash = Kurzmeldungen anzeigen (z. B. "Erfolgreich registriert")
+
+# Werkzeug: für sichere Passwortverarbeitung
 from werkzeug.security import generate_password_hash, check_password_hash
+# generate_password_hash = verschlüsselt ein Passwort (nicht im Klartext speichern)
+# check_password_hash = prüft, ob ein eingegebenes Passwort zur verschlüsselten Version passt
+
+# Eigene Datenbank-Funktionen aus db.py
 from db import get_db, close_db, init_db
+# get_db = Verbindung zur SQLite-Datenbank herstellen
+# close_db = Verbindung sauber schließen nach jedem Request
+# init_db = Tabellen erstellen, z. B. bei Projektstart
+
+# Für Zufallsauswahl beim Lernen (z. B. zufällige Karteikarte)
 import random
+
 
 app = Flask(__name__)
 app.secret_key = 'geheimer_schluessel'  # In Produktion durch sicheren Wert ersetzen
@@ -267,10 +285,15 @@ def edit_flashcard(id):
     db = get_db()
     user_id = session['user_id']
 
+    # Karte abfragen
     card = db.execute('SELECT * FROM flashcards WHERE id = ? AND user_id = ?', (id, user_id)).fetchone()
+
+    # Falls Karte nicht existiert oder fremd ist
     if not card:
         flash('Karte nicht gefunden oder kein Zugriff.')
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard'))  # set_id ist hier nicht verfügbar!
+
+    set_id = card['set_id']  # Nur wenn Karte existiert, dürfen wir das holen
 
     if request.method == 'POST':
         question = request.form['question']
@@ -280,7 +303,7 @@ def edit_flashcard(id):
         db.commit()
 
         flash('Karte erfolgreich aktualisiert.')
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('manage_set', set_id=set_id))
 
     return render_template('edit_flashcard.html', card=card)
 
@@ -296,11 +319,24 @@ def delete_flashcard(id):
     db = get_db()
     user_id = session['user_id']
 
+    # set_id zuerst aus der Datenbank holen
+    set_id_row = db.execute(
+        'SELECT set_id FROM flashcards WHERE id = ? AND user_id = ?', 
+        (id, user_id)
+    ).fetchone()
+
+    if not set_id_row:
+        flash('Karte nicht gefunden oder kein Zugriff.')
+        return redirect(url_for('dashboard'))
+
+    set_id = set_id_row['set_id']  # aus fetchone Dictionary holen
+
+    # Karte löschen
     db.execute('DELETE FROM flashcards WHERE id = ? AND user_id = ?', (id, user_id))
     db.commit()
 
     flash('Karte wurde gelöscht.')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('manage_set', set_id=set_id))
 
 # ----------------------------------
 # Lern-Set Auswahl
