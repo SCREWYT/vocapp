@@ -1,36 +1,31 @@
+# Optimized with ChatGPT Chat 
+# https://chatgpt.com/share/685bd087-d1f4-800b-825f-d8f7ec1b94e3 
+
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 # render_template = HTML-Dateien laden und anzeigen
-# request = Zugriff auf Formulardaten (z. B. POST)
+# request = Zugriff auf Formulardaten (z. B. GET/POST)
 # redirect = Weiterleitung zu anderer Route
 # url_for = URL aus Funktionsnamen erstellen (z. B. url_for('login') → "/login")
-# session = Daten zwischen Seitenaufrufen speichern (z. B. user_id)
+# session = Daten zwischen Seitenaufrufen speichern für Nutzer (z. B. user_id)
 # flash = Kurzmeldungen anzeigen (z. B. "Erfolgreich registriert")
 
-# Werkzeug: für sichere Passwortverarbeitung
 from werkzeug.security import generate_password_hash, check_password_hash
 # generate_password_hash = verschlüsselt ein Passwort (nicht im Klartext speichern)
 # check_password_hash = prüft, ob ein eingegebenes Passwort zur verschlüsselten Version passt
 
-# Eigene Datenbank-Funktionen aus db.py
 from db import get_db, close_db, init_db
-# get_db = Verbindung zur SQLite-Datenbank herstellen
-# close_db = Verbindung sauber schließen nach jedem Request
-# init_db = Tabellen erstellen, z. B. bei Projektstart
-
-# Für Zufallsauswahl beim Lernen (z. B. zufällige Karteikarte)
 import random
 
-
 app = Flask(__name__)
-app.secret_key = 'geheimer_schluessel'  # In Produktion durch sicheren Wert ersetzen
+app.secret_key = 'geheimer_schluessel'  # In echter App sollte der Geheim sein
 
-# Datenbankverbindung nach jedem Request sauber schließen
+# Flask schließt DB Verbindung nach jedem Request (teardown)
 app.teardown_appcontext(close_db)
 
 # ----------------------------------
-# OPTIONAL: Initialisierung der DB
+# Initialisierung der DB
 # ----------------------------------
-@app.cli.command("init-db")
+@app.cli.command("init-db") # Ein Command nur für das Terminal
 def initialize_database():
     """
     Führt init_db() aus, um die Datenbank zu erstellen.
@@ -40,9 +35,9 @@ def initialize_database():
     print("Datenbank erfolgreich initialisiert.")
 
 # ----------------------------------
-# Startseite: Weiterleitung zur Login-Seite
+# Startseite: Weiterleitung zur Login-Seite. Erfolgt automatisch durch Flask
 # ----------------------------------
-@app.route('/')
+@app.route('/') # Root
 def index():
     return redirect(url_for('login'))
 
@@ -52,7 +47,6 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """
-    Route zur Benutzerregistrierung.
     GET: Zeigt das Registrierungsformular.
     POST: Speichert den neuen Nutzer und legt das Standard-Set mit Karten an.
     """
@@ -171,36 +165,11 @@ def logout():
 # ----------------------------------
 @app.route('/dashboard')
 def dashboard():
-    """
-    Dashboard mit Sets und deren Karteikarten, alphabetisch sortiert.
-    """
     if 'user_id' not in session:
         flash('Bitte logge dich ein, um fortzufahren.')
         return redirect(url_for('login'))
 
-    user_id = session['user_id']
-    username = session.get('username')
-    db = get_db()
-
-    # Alle Sets des Nutzers alphabetisch sortiert abfragen
-    sets = db.execute('SELECT id, name FROM sets WHERE user_id = ? ORDER BY name', (user_id,)).fetchall()
-
-    sets_with_cards = []
-    for s in sets:
-        # Für jedes Set die Karteikarten holen
-        flashcards = db.execute(
-            'SELECT id, question, answer FROM flashcards WHERE set_id = ? AND user_id = ?',
-            (s['id'], user_id)
-        ).fetchall()
-        sets_with_cards.append({
-            'id': s['id'],
-            'name': s['name'],
-            'flashcards': flashcards
-        })
-
-    return render_template('dashboard.html', username=username, sets=sets_with_cards)
-
-
+    return render_template('dashboard.html')
 
 # ----------------------------------
 # Sets Übersicht / Anlegen
@@ -218,7 +187,7 @@ def sets_overview():
         set_name = request.form.get('set_name', '').strip()
         if not set_name:
             flash('Der Name des Sets darf nicht leer sein.')
-            return redirect(url_for('sets_overview'))
+            return redirect(url_for('sets_overview')) # Sonst kommt immer dieses: "Möchten Sie das Formular neu laden?"
 
         exists = db.execute('SELECT id FROM sets WHERE user_id = ? AND name = ?', (user_id, set_name)).fetchone()
         if exists:
@@ -230,8 +199,8 @@ def sets_overview():
         flash(f'Set "{set_name}" wurde angelegt.')
         return redirect(url_for('sets_overview'))
 
-    sets = db.execute('SELECT id, name FROM sets WHERE user_id = ? ORDER BY name', (user_id,)).fetchall()
-    return render_template('sets_overview.html', sets=sets)
+    sets = db.execute('SELECT id, name FROM sets WHERE user_id = ? ORDER BY name', (user_id,)).fetchall() # Gibt alle Sets, die existieren
+    return render_template('sets_overview.html', sets=sets) # Zusätzlich wird die Variable "sets" ans Template weitergegeben
 
 # ----------------------------------
 # Verwaltung der Karteikarten im Set
@@ -243,19 +212,19 @@ def manage_set(set_id):
         return redirect(url_for('login'))
 
     db = get_db()
-    user_id = session['user_id']
+    user_id = session['user_id'] # Flask verwendet sogenannte "Secure Cookies" , die im Browser die "Sessions" speichern
 
-    set_obj = db.execute('SELECT id, name FROM sets WHERE id = ? AND user_id = ?', (set_id, user_id)).fetchone()
+    set_obj = db.execute('SELECT id, name FROM sets WHERE id = ? AND user_id = ?', (set_id, user_id)).fetchone() # Holt Set
     if not set_obj:
         flash('Set nicht gefunden oder kein Zugriff.')
         return redirect(url_for('sets_overview'))
 
-    if request.method == 'POST':
-        question = request.form.get('question', '').strip()
+    if request.method == 'POST': # Neue Karte
+        question = request.form.get('question', '').strip() 
         answer = request.form.get('answer', '').strip()
 
         if not question or not answer:
-            flash('Frage und Antwort dürfen nicht leer sein.')
+            flash('Felder dürfen nicht leer sein.')
             return redirect(url_for('manage_set', set_id=set_id))
 
         db.execute(
@@ -266,7 +235,7 @@ def manage_set(set_id):
         flash('Karteikarte erfolgreich hinzugefügt.')
         return redirect(url_for('manage_set', set_id=set_id))
 
-    flashcards = db.execute(
+    flashcards = db.execute( # Holt alle Karten, um sie dann anzeigen zu können
         'SELECT id, question, answer FROM flashcards WHERE user_id = ? AND set_id = ? ORDER BY id DESC',
         (user_id, set_id)
     ).fetchall()
@@ -291,9 +260,9 @@ def edit_flashcard(id):
     # Falls Karte nicht existiert oder fremd ist
     if not card:
         flash('Karte nicht gefunden oder kein Zugriff.')
-        return redirect(url_for('dashboard'))  # set_id ist hier nicht verfügbar!
+        return redirect(url_for('dashboard'))  # In diesem Beispiel gibts ja auch keine set_id, deshalb schickts einen sicherheitshalber zurück zum Dashboard 
 
-    set_id = card['set_id']  # Nur wenn Karte existiert, dürfen wir das holen
+    set_id = card['set_id']  # Mit der ID finden wir dann zurück zum richtigen Set
 
     if request.method == 'POST':
         question = request.form['question']
@@ -350,7 +319,7 @@ def learn_select_set():
     db = get_db()
     user_id = session['user_id']
 
-    sets = db.execute('SELECT id, name FROM sets WHERE user_id = ? ORDER BY name', (user_id,)).fetchall()
+    sets = db.execute('SELECT id, name FROM sets WHERE user_id = ? ORDER BY name', (user_id,)).fetchall() # Holt alle Sets, alphabetisch sortiert
     return render_template('learn_select_set.html', sets=sets)
 
 # ----------------------------------
@@ -416,28 +385,27 @@ def learn_set(set_id):
     return redirect(url_for('learn_select_set'))
 
 
-# ----------------------------------
-# JSON File - Karteikarten
-# ----------------------------------
-
+# ----------------------------------------------------------------------------------
+# JSON File - Karteikarten - Reine Rohdaten, Headless = Kein Header/Footer etc.
+# ----------------------------------------------------------------------------------
 
 @app.route('/api/flashcards')
 def api_flashcards():
     if 'user_id' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
+        return jsonify({'error': 'Unauthorized'}), 401 # Fehlercode 401 = Unauthorized
 
     db = get_db()
     user_id = session['user_id']
 
     cards = db.execute(
-        'SELECT id, set_id, question, answer, box, last_reviewed FROM flashcards WHERE user_id = ?',
+        'SELECT id, set_id, question, answer, box, last_reviewed FROM flashcards WHERE user_id = ?', # Holt alle Karten inklusive Box = Lernstufe
         (user_id,)
     ).fetchall()
 
     # Konvertiere sqlite3.Row-Objekte in Dictionaries
-    cards_list = [dict(card) for card in cards]
+    cards_list = [dict(card) for card in cards] # Hier werden sie in normale Python Dictionaries umgewandelt, die dann als JSON ausgegeben werden können
 
-    return jsonify({'flashcards': cards_list})
+    return jsonify({'flashcards': cards_list}) # Gibt eine strukturierte JSON File zurück
 
 
 # http://127.0.0.1:5000/api/flashcards im Browser aufrufen, nachdem man sich eingeloggt hat
@@ -445,8 +413,8 @@ def api_flashcards():
 # ----------------------------------
 # App starten (lokal)
 # ----------------------------------
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+if __name__ == '__main__': # Benutze ich z. B "flask run --reload" statt python app.py wird das hier nie gestartet
+    app.run(debug=True, use_reloader=True) # Debug = Aktiviert Fehlermeldungen, reloader = Server startet automatisch neu, wenn man eine Datei ändert
     
 # ----------------------------------
 # Impressum
@@ -454,3 +422,5 @@ if __name__ == '__main__':
 @app.route('/imprint')
 def imprint():
     return render_template('imprint.html')
+
+# JSON = Javascript Object Notation
