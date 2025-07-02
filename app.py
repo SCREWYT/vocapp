@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 # render_template = HTML-Dateien laden und anzeigen
 # request = Zugriff auf Formulardaten (z. B. POST)
 # redirect = Weiterleitung zu anderer Route
@@ -414,6 +414,33 @@ def learn_set(set_id):
 
     flash('Keine Karteikarten zum Lernen im Set vorhanden.')
     return redirect(url_for('learn_select_set'))
+
+
+# ----------------------------------
+# JSON File - Karteikarten
+# ----------------------------------
+
+
+@app.route('/api/flashcards')
+def api_flashcards():
+    if 'user_id' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    db = get_db()
+    user_id = session['user_id']
+
+    cards = db.execute(
+        'SELECT id, set_id, question, answer, box, last_reviewed FROM flashcards WHERE user_id = ?',
+        (user_id,)
+    ).fetchall()
+
+    # Konvertiere sqlite3.Row-Objekte in Dictionaries
+    cards_list = [dict(card) for card in cards]
+
+    return jsonify({'flashcards': cards_list})
+
+
+# http://127.0.0.1:5000/api/flashcards im Browser aufrufen, nachdem man sich eingeloggt hat
 
 # ----------------------------------
 # App starten (lokal)
