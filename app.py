@@ -412,12 +412,6 @@ def api_flashcards():
 # http://127.0.0.1:5000/api/flashcards im Browser aufrufen, nachdem man sich eingeloggt hat
 
 # ----------------------------------
-# App starten (lokal)
-# ----------------------------------
-if __name__ == '__main__': # Benutze ich z. B "flask run --reload" statt python app.py wird das hier nie gestartet
-    app.run(debug=True, use_reloader=True) # Debug = Aktiviert Fehlermeldungen, reloader = Server startet automatisch neu, wenn man eine Datei ändert
-    
-# ----------------------------------
 # Impressum
 # ----------------------------------
 @app.route('/imprint')
@@ -425,3 +419,11 @@ def imprint():
     return render_template('imprint.html')
 
 # JSON = Javascript Object Notation
+
+# ----------------------------------
+# App starten (lokal)
+# ----------------------------------
+if __name__ == '__main__': # Benutze ich z. B "flask run --reload" statt python app.py wird das hier nie gestartet
+    app.run(debug=True, use_reloader=True) # Debug = Aktiviert Fehlermeldungen, reloader = Server startet automatisch neu, wenn man eine Datei ändert
+    
+
