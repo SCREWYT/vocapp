@@ -334,52 +334,53 @@ def learn_set(set_id):
     db = get_db()
     user_id = session['user_id']
 
-    set_obj = db.execute('SELECT id, name FROM sets WHERE id = ? AND user_id = ?', (set_id, user_id)).fetchone()
+    set_obj = db.execute('SELECT id, name FROM sets WHERE id = ? AND user_id = ?', (set_id, user_id)).fetchone() # Prüfen, ob Set existiert und Nutzer gehört
     if not set_obj:
         flash('Set nicht gefunden oder kein Zugriff.')
         return redirect(url_for('learn_select_set'))
 
-    if request.method == 'POST':
-        if 'result' in request.form:
-            card_id = int(request.form['card_id'])
+    if request.method == 'POST': # Hier geht es los mit dem Lernen (Man klickt auf "Richtig" oder "Falsch")
+        if 'result' in request.form: 
+            card_id = int(request.form['card_id']) 
             result = request.form['result']
 
             card = db.execute(
-                'SELECT box FROM flashcards WHERE id = ? AND user_id = ? AND set_id = ?',
+                'SELECT box FROM flashcards WHERE id = ? AND user_id = ? AND set_id = ?', # Holt aktuelle Lernstufenbox der Karte aus db
                 (card_id, user_id, set_id)
             ).fetchone()
 
             if card:
                 current_box = card['box']
-                new_box = min(current_box + 1, 3) if result == 'correct' else 1
+                new_box = min(current_box + 1, 3) if result == 'correct' else 1 # Wenn richtig rutscht die Karte 1 Stufe hoch, wenn falsch wieder Stufe 1 
 
                 db.execute(
-                    'UPDATE flashcards SET box = ?, last_reviewed = DATE("now") WHERE id = ? AND user_id = ? AND set_id = ?',
+                    'UPDATE flashcards SET box = ?, last_reviewed = DATE("now") WHERE id = ? AND user_id = ? AND set_id = ?', # Speichert neue Box direkt in db
                     (new_box, card_id, user_id, set_id)
                 )
                 db.commit()
 
             return redirect(url_for('learn_set', set_id=set_id))
 
-        elif 'show_answer' in request.form:
+        elif 'show_answer' in request.form: # User hat auf "Antwort anzeigen" geklickt
             card_id = int(request.form['card_id'])
             card = db.execute(
-                'SELECT * FROM flashcards WHERE id = ? AND user_id = ? AND set_id = ?',
+                'SELECT * FROM flashcards WHERE id = ? AND user_id = ? AND set_id = ?', # Holt Infos der Karte
                 (card_id, user_id, set_id)
             ).fetchone()
 
             if card:
-                return render_template('learn.html', card=card, reveal=True, set_obj=set_obj)
+                return render_template('learn.html', card=card, reveal=True, set_obj=set_obj) # Karte wird hier angezeigt
 
-    for box in [1, 2, 3]:
+    for box in [1, 2, 3]: # Das System schlägt bevorzugt Karten aus Box 1 vor (am wenigsten gelernt),
+                          # danach aus Box 2 und zuletzt aus Box 3 (bereits gut gelernte Karten).
         cards = db.execute(
-            'SELECT * FROM flashcards WHERE user_id = ? AND set_id = ? AND box = ?',
+            'SELECT * FROM flashcards WHERE user_id = ? AND set_id = ? AND box = ?', 
             (user_id, set_id, box)
         ).fetchall()
 
         if cards:
-            card = random.choice(cards)
-            return render_template('learn.html', card=card, reveal=False, set_obj=set_obj)
+            card = random.choice(cards) # Holt random Karten aus dem Set
+            return render_template('learn.html', card=card, reveal=False, set_obj=set_obj) # False = Wichtig, da man sonst die Antwort sieht
 
     flash('Keine Karteikarten zum Lernen im Set vorhanden.')
     return redirect(url_for('learn_select_set'))
