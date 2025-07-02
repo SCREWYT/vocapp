@@ -1,3 +1,4 @@
+{# Startlayout nach Login. Von hier aus kann man entweder lernen oder zur Set-Verwaltung #}
 {% extends "base.html" %}
 
 {% block content %}
@@ -6,10 +7,10 @@
 
 <div class="button-link-group">
 
-    <a href="{{ url_for('learn_select_set') }}" class="button-link wide">📚 Jetzt lernen!</a>
+    <a href="{{ url_for('learn_select_set') }}" class="button-link">📚 Jetzt lernen!</a>
     {# Link zur Lernseite (Set-Auswahl), gestylt als Button mit Icon #}
 
-    <a href="{{ url_for('sets_overview') }}" class="button-link wide"> 📖 Zu deinen Karteikartensets</a>
+    <a href="{{ url_for('sets_overview') }}" class="button-link"> 📖 Zu deinen Karteikartensets</a>
     {# Link zur Übersicht aller Sets des Users, ebenfalls als Button #}
 </div>
 

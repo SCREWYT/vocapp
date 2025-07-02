@@ -1,3 +1,4 @@
+{# Karteikartenverwaltung für ein Set. Neue Karten hinzufügen, bearbeiten, löschen. ABER nur für EIN Set jeweils #}
 {% extends "base.html" %}
 
 {% block content %}
@@ -42,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for card in flashcards %}
+                {% for card in flashcards %} {# HIER wird "card" wegen dem Jinja2 Renderer definiert. #}
                     <tr>
                         <td>{{ card.question }}</td>
                         <td>{{ card.answer }}</td>

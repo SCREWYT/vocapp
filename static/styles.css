@@ -1,72 +1,81 @@
- /* === Optimized with ChatGPT Chat 29.06.2025 1 === */
- * {
+/* Entfernt Standardränder und -abstände aller Elemente */
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Inkludiert Padding und Border in der Gesamtgröße eines Elements */
 }
+
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;                                                  /* Aktiviert weiches Scrollen bei Sprüngen innerhalb der Seite */
 }
 
+/* Basisstil für die Seite */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #eef6f9, #ffffff);
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;       /* Moderne, klare Schriftarten */
+    background: linear-gradient(135deg, #eef6f9, #ffffff);         /* Farbverlauf im Hintergrund */
+    color: #333;                                                    /* Standard-Schriftfarbe in dunklem Grau */
+    min-height: 100vh;                                               /* Seite soll mindestens die Höhe des Viewports einnehmen */
+    display: flex;                                                  /* Flexbox für vertikales Layout */
+    flex-direction: column;                                        /* Elemente werden untereinander angeordnet */
+    line-height: 1.6;                                             /* Angenehme Zeilenhöhe für Text */
 }
 
 /* === HEADER === */
+
 header {
-    background: #88d8c0;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: #88d8c0;                                  /* Mintgrüner Hintergrund */
+    color: #fff;                                         /* Weiße Schriftfarbe */
+    padding: 20px 0;                                      /* Vertikaler Abstand oben und unten */
+    text-align: center;                                  /* Zentriert den Text */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);         /* Leichter Schatten unten */
 }
 
 header h1 {
-    font-size: 2.2rem;
-    font-weight: 400;
-    letter-spacing: 1px;
+    font-size: 2.2rem;                                         /* Große Überschrift */
+    font-weight: 400;                                         /* Normale Stärke */
+    letter-spacing: 1px;                                     /* Etwas mehr Buchstabenabstand */
 }
 
+
 /* === LAYOUT / MAIN === */
+
 main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 60px 20px;
+    flex: 1;                                        /* Soll den verfügbaren Platz einnehmen */
+    display: flex;                                 /* Flex-Layout */
+    justify-content: center;                      /* Zentriert horizontal */
+    align-items: flex-start;                     /* Startet oben vertikal */
+    padding: 60px 20px;                         /* Außenabstand oben/unten und seitlich */
 }
 
 .container {
-    width: 100%;
-    max-width: 800px;
-    background: #fff;
+    width: 100%;                                        /* Nimmt volle Breite ein */
+    max-width: 800px;                                  /* Begrenzung auf 800px */
+    background: #fff;                               /* Weißer Hintergrund */
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;                            /* Abgerundete Ecken */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);  /* Sanfter Schatten */
 }
 
-/* === HEADINGS === */
+
+/* === ÜBERSCHRIFTEN === */
+
 h1, h2 {
-    color: #2c5530;
+    color: #2c5530;              /* Dunkles Grün */
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;       /* 1 rem = 16px */
 }
 
 h2 {
     font-size: 1.8rem;
-    font-weight: 300;
+    font-weight: 300;           /* Dünne Schrift für h2 */
 }
 
+
 /* === FORMULAR === */
-form > div {
-    margin-bottom: 1.5rem;
+
+form > div {                      /* Kind Selektor, div ist Kind von form */
+    margin-bottom: 1.5rem;       /* Abstand zwischen Formularfeldern */
 }
 
 label {
@@ -76,6 +85,7 @@ label {
     color: #555;
 }
 
+/* Input-Felder & Textareas */
 input[type="text"],
 input[type="password"],
 textarea {
@@ -85,23 +95,21 @@ textarea {
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.25s ease;
-    background: #fafafa;
+    background: #fafafa;         /* Hellgrauer Hintergrund */
 }
 
+/* Fokus-Stil für Eingabefelder, also das was gerade angeklickt/angetippt etc. wird bei z. B dem Login */
 input:focus,
 textarea:focus {
     outline: none;
-    border-color: #88d8c0;
+    border-color: #88d8c0;                             /* Mintgrüne Umrandung */
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(136, 216, 192, 0.2);
+    box-shadow: 0 0 0 3px rgba(136, 216, 192, 0.2);  /* Leuchtring bei Fokus */
 }
 
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
 
 /* === BUTTON === */
+
 button {
     display: block;
     margin: 1.5rem auto 0;
@@ -112,21 +120,23 @@ button {
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer;                                          /* Mauszeiger wird zur Hand wenn man drüberfährt */
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background: #76cbb3;
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Kleiner „Hover-Sprung“ nach oben entlang der y-Achse */
 }
 
+
 /* === LINKS === */
+
 a {
     color: #2c5530;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease; /* Farbe animiert  */
 }
 
 a:hover {
@@ -134,14 +144,16 @@ a:hover {
     text-decoration: underline;
 }
 
+
 /* === FLASH MESSAGES === */
+
 .flashes {
     list-style: none;
     margin-bottom: 1.5rem;
     padding: 0;
 }
 
-.flashes li {
+.flashes li { /* Listenpunkte */
     background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
     color: #2d3436;
     padding: 12px 15px;
@@ -150,7 +162,9 @@ a:hover {
     margin-bottom: 1rem;
 }
 
-/* === REGISTER / LINK HINWEIS === */
+
+/* === REGISTER / LINK-HINWEIS === */
+
 .register-link {
     text-align: center;
     margin-top: 2rem;
@@ -162,7 +176,9 @@ a:hover {
     font-weight: 600;
 }
 
+
 /* === FOOTER === */
+
 footer {
     background: #88d8c0;
     color: white;
@@ -171,7 +187,9 @@ footer {
     font-size: 0.9rem;
 }
 
+
 /* === LISTEN === */
+
 ul {
     padding-left: 1.2rem;
     margin-bottom: 1rem;
@@ -181,8 +199,10 @@ ul li {
     margin-bottom: 0.5rem;
 }
 
+
 /* === RESPONSIVE === */
-@media (max-width: 768px) {
+
+@media (max-width: 768px) {             /* Sorgt für bessere Lesbarkeit auf kleineren Bildschirmen */
     .container {
         padding: 25px 20px;
     }
@@ -200,35 +220,38 @@ ul li {
         max-width: 100%;
     }
 }
-/* Optimized with ChatGPT Chat 29.06.2025 2 */
+
+
+/* === TABELLE === */
+
 table {
     width: 100%;
     max-width: 900px;
     margin: 2rem auto;
-    border-collapse: collapse;
+    border-collapse: collapse;                       /* Es gibt hier keine Zellenspalten zwischen den Zellen */
     border-radius: 15px;
-    overflow: hidden;
+    overflow: hidden;                              /* Versteckt alles außerhalb des sichtbaren Bereichs */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
     background: #fff;
 }
 
-thead {
+thead {                                                           /* Tabellenkopf */
     background: linear-gradient(135deg, #a8e6cf, #88d8c0);
     color: #2c5530;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-th, td {
+th, td {                            /* table header, table data */
     padding: 16px 20px;
     text-align: center;
     vertical-align: middle;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee;   /* Dünne graue Linie am Bottom */
     font-size: 1rem;
     color: #333;
 }
 
-tr:last-child td {
+tr:last-child td {                 /* Ganz unten keine Linie */
     border-bottom: none;
 }
 
@@ -236,13 +259,14 @@ tr:hover {
     background-color: #f5f9f9;
 }
 
-/* Buttons nebeneinander mit Abstand */
+
+/* === BUTTONS IN TABELLENZELLEN === */
+
 td form {
-    display: inline-block;
+    display: inline-block; /* Elemente stehen nebeneinander */
     margin: 0 6px;
 }
 
-/* Button-Styling in der Tabelle etwas kleiner */
 td button {
     padding: 8px 16px;
     font-size: 0.95rem;
@@ -258,7 +282,9 @@ td button:hover {
     background: linear-gradient(135deg, #76cbb3, #5ca995);
 }
 
+
 /* === HEADER-NAVIGATION RECHTS === */
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -280,7 +306,10 @@ td button:hover {
     opacity: 0.8;
 }
 
-.button-link-group {
+
+/* === BUTTON-GRUPPEN & BACKLINKS === */
+
+.button-link-group {                      /* Container für alle Button Link Elemente */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -288,7 +317,7 @@ td button:hover {
     margin-top: 2rem;
 }
 
-.button-link {
+.button-link {   /* Alle Button Links */
     display: inline-block;
     padding: 12px 28px;
     font-size: 1rem;
@@ -314,6 +343,9 @@ td button:hover {
     margin-top: 2rem;
 }
 
+
+/* === AKTIONS-BUTTONS IN TABELLEN === */
+
 .table-action-button {
     display: inline-block;
     padding: 8px 16px;
@@ -337,10 +369,11 @@ td button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: -5px;
+    gap: 0px; 
 }
 
-/* === LEARN-PAGE STYLING === */
+
+/* === LERNMODUS / FLASHCARDS === */
 
 .flashcard-container {
     display: flex;
@@ -380,7 +413,7 @@ td button:hover {
     margin-top: 1.5rem;
 }
 
-.button-group button {
+.button-group button {    /* Richtig und Falsch Buttons */
     padding: 12px 28px;
     font-size: 1rem;
     border-radius: 10px;
@@ -396,5 +429,3 @@ td button:hover {
     color: white;
     transform: translateY(-2px);
 }
-
-

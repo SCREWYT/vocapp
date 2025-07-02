@@ -1,3 +1,5 @@
+# Quelle: https://www.youtube.com/watch?v=IBgWKTaG_Bs
+
 import sqlite3                    
 from flask import g, current_app  # 'g' = globale Variable pro Anfrage,
 import os                         # Modul zur Arbeit mit Dateien und Verzeichnissen
