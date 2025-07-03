@@ -169,7 +169,9 @@ def dashboard():
         flash('Bitte logge dich ein, um fortzufahren.')
         return redirect(url_for('login'))
 
-    return render_template('dashboard.html')
+    username = session.get('username')
+    return render_template('dashboard.html', username=username)
+
 
 # ----------------------------------
 # Sets Übersicht / Anlegen
