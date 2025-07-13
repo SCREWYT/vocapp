@@ -3,68 +3,62 @@ title: MVP von VocApp
 nav_order: 15
 ---
 
-# MVP - VocApp
-
-{: .no_toc }
-
-## Inhaltsverzeichnis
-{: .toc }
-
----
-
-<!-- Das alles hier ist ebenfalls nur eine leere Vorlage und soll als potenzielle Idee dienen -->
-
 ## Ziel
-Die Webanwendung **[VocApp]** verfolgt das Ziel, [kurze Projektbeschreibung, z. B. „Vokabeln effektiv zu lernen und zu verwalten“]. Dabei wird auf [z. B. „eine solide Backend-Struktur und ein schlankes, intuitives UI“] geachtet.
+
+Die Webanwendung **VocApp** verfolgt das Ziel, das digitale Lernen von Vokabeln durch ein **einfaches**, aber **effektives** Karteikartensystem zu unterstützen. Nutzer können eigene Karteikarten-Sets anlegen, bearbeiten und gezielt über eine Lernfunktion abfragen lassen. 
+
+Dabei liegt der Fokus auf einem stabilen Backend, einer klaren Trennung von Logik und Oberfläche sowie einer intuitiven und möglichst **schlanken** Benutzerführung.
 
 ---
 
 ## Funktionen im MVP
 
 ### Backend-Fokus
-1. **[Funktion 1, z. B. Nutzerregistrierung]**
-   - [Kurze Beschreibung]
-2. **[Funktion 2, Datenverarbeitung]**
-   - [Kurze Beschreibung]
-3. **[Funktion 3]**
-   - [Kurze Beschreibung]
+
+1. **Nutzerregistrierung und Login**
+   - Funktionale Nutzerverwaltung mit Login über SQLite; Fokus liegt auf eindeutigen Nutzern, nicht auf Sicherheitsaspekten.
+2. **Karteikarten-Sets verwalten**
+   - Anlegen, Bearbeiten und Löschen von Sets und einzelnen Karten über eine eigene Datenbankstruktur.
+3. **Lernmodus**
+   - Abfrage einzelner Karten mit Frage-/Antwort-Logik und einfachem Fortschrittskonzept.
 
 ---
 
 ### UI-Fokus
+
 1. **Grunddesign**
-   - [z. B. Responsives Layout, einfache Navigation]
+   - Einfaches, responsives Layout mit Navigation zwischen Startseite, Login, Dashboard und Lernbereich.
 2. **Formulare**
-   - [z. B. Eingabeformular, Validierung im Frontend]
+   - Registrierung, Login, Karteikarten-Erstellung und Bearbeitung mit grundlegender Validierung.
 3. **Datenanzeige**
-   - [z. B. Tabellen, Karten, Listen etc.]
+   - Übersichtliche Darstellung der vorhandenen Karteikartensets in Tabellenform mit Bearbeitungsoptionen.
 
 ---
 
 ## Aufgabenliste
 
 ### Backend
-- [ ] Datenbankmodell entwerfen (z. B. SQLite)
-- [ ] Logik für [Funktionalität] implementieren
+- [x] Datenbankmodell mit Nutzern, Sets und Karten definieren
+- [x] Login- und Registrierungslogik mit Passwort-Hashing
+- [x] Karten erstellen, bearbeiten und löschen (CRUD)
+- [x] Simple Spaced Repetition Logik für Abfragen umsetzen
 
 ### Frontend
-- [ ] HTML-Templates erstellen
-- [ ] Formulare anlegen und mit Backend verbinden
-- [ ] Layout gestalten (z. B. mit Bootstrap)
+- [x] HTML-Templates mit Jinja2 anlegen
+- [x] Formulare und Buttons mit Backend verknüpfen
+- [x] Navigation über Navbar implementieren
+- [x] Styling optimieren (z. B. Tabellen, Buttons mittig und einheitlich gestalten)
 
 ---
 
 ## Technologien
-- **Backend**: [z. B. Flask, Django, Node.js]
-- **Frontend**: [HTML, CSS, JS, evtl. Frameworks wie Bootstrap]
-- **Tools**: [z. B. Git, VS Code, Postman]
 
+- **Backend**: Flask (Python), SQLite, SQLAlchemy
+- **Frontend**: HTML, CSS (teilweise Bootstrap), Jinja2
+- **Tools**: Git, GitHub, VS Code
 ---
 
 ## Nicht im MVP
 
-
----
-
-## Ziel des MVP
-Das MVP soll eine **funktionierende Grundversion** der Anwendung bereitstellen – mit Fokus auf Stabilität, Klarheit und einer sauberen Trennung von Frontend und Backend. Erweiterungen erfolgen in späteren Iterationen.
+- Kein Benutzer-Ranking oder Gamification
+- Kein Fortschrittsspeicher pro Karteikarte (z. B. Lernstandsanzeige)
