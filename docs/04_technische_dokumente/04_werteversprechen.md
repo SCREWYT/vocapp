@@ -6,10 +6,10 @@ nav_order: 11
 
 # Wertversprechen von VocApp:
 
-VocApp ist eine benutzerfreundliche Karteikarten-App, die das Lernen und die Prüfungsvorbereitung **effizienter** gestaltet. Mit der App können Nutzer **Lerninhalte speichern**, gezielt **wiederholen** und **langfristig verinnerlichen**.
+VocApp ist eine benutzerfreundliche Karteikarten-App, die das Lernen und die Prüfungsvorbereitung **effizienter** gestaltet. Mit der App können Nutzer **Lerninhalte speichern**, gezielt **wiederholen** und **langfristig verinnerlichen** - basierend auf dem Prinzip der Spaced Repetition.
 
 ## Problem:
-Lernende haben oft Schwierigkeiten, ihre Inhalte **strukturiert** zu wiederholen und Prüfungen **effektiv vorzubereiten**. Die traditionelle Methode mit physischen Karteikarten ist **zeitaufwendig** und **unflexibel**. Zudem fehlt eine **zentrale, digitale Plattform** für das Speichern und Wiederholen von Lerninhalten.
+Lernende haben oft Schwierigkeiten, ihre Inhalte **strukturiert** zu wiederholen und Prüfungen **effektiv vorzubereiten**. Die traditionelle Methode mit physischen Karteikarten ist **zeitaufwendig** und **unflexibel**. Es fehlt eine **zentrale, digitale Plattform** für das Speichern und Wiederholen von Lerninhalten.
 
 ## Zielgruppe:
 - **Insbesondere Schüler der Klassen 7 bis 10**
