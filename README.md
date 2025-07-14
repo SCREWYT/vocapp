@@ -82,8 +82,6 @@ Beispiel-Passwort: `demo123`
 | `LICENSE.txt`         | MIT-Lizenz                             |
 | `.gitignore`          | Schließt Dateien vom Git-Tracking aus  |
 
-`instance/` muss lokal initialisiert werden mit: `flask init-db`
-
 ---
 
 ## **Technologie-Stack**
