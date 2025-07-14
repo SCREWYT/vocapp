@@ -1,7 +1,7 @@
 ---
 title: Architektur
 parent: Technische Dokumente
-nav_order: 1
+nav_order: 8
 ---
 
 # Architektur

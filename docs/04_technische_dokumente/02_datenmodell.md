@@ -1,56 +1,63 @@
 ---
 title: Datenmodell
 parent: Technische Dokumente
-nav_order: 9
+nav_order: 2
 ---
 
-# Datenmodell Vocapp
+# Datenmodell – VocApp
 
-<!-- Das sind erstmal nur Ideen, am Ende wird viel entfernt -->
+Dieses Datenmodell beschreibt den Aufbau der SQLite-Datenbank von VocApp. Es besteht aus drei zentralen Tabellen: **users**, **sets** und **flashcards**. Die Datenbank wird lokal im `instance`-Ordner gespeichert und per `flask init-db` erstellt.
 
-## Vokabel
+---
 
-| Spalte         | Typ     | Beschreibung                           |
-|----------------|---------|----------------------------------------|
-| Vokabel_id     | INTEGER | PK, eindeutige ID der Vokabel         |
-| Wort           | TEXT    | Das Vokabelwort                       |
-| Bedeutung      | TEXT    | Die Bedeutung des Wortes              |
-| Sprache        | TEXT    | Die Sprache des Wortes                |
-| Beispiel       | TEXT    | Beispiel für die Verwendung des Wortes |
+## users (Benutzerkonten)
 
-## Benutzer
+| Spalte    | Typ     | Beschreibung                              |
+|-----------|---------|-------------------------------------------|
+| id        | INTEGER | Primärschlüssel (eindeutige Benutzer-ID)  |
+| username  | TEXT    | Benutzername (muss eindeutig sein)        |
+| password  | TEXT    | Gehashter Wert des Passworts              |
+| role      | TEXT    | Benutzerrolle, Standardwert = `'user'`    |
 
-| Spalte         | Typ     | Beschreibung                           |
-|----------------|---------|----------------------------------------|
-| Benutzer_id    | INTEGER | PK, eindeutige ID des Benutzers       |
-| Email          | TEXT    | PK, E-Mail-Adresse des Benutzers      |
-| Benutzername   | TEXT    | Benutzername                          |
-| Passwort       | TEXT    | Gehashter Wert des Passworts          |
+---
 
-## Lernfortschritt
+## sets (Karteikartensets)
 
-| Spalte         | Typ     | Beschreibung                           |
-|----------------|---------|----------------------------------------|
-| Fortschritt_id | INTEGER | PK, eindeutige ID des Lernfortschritts|
-| Benutzer_id    | INTEGER | FK, Referenz auf den Benutzer         |
-| Vokabel_id     | INTEGER | FK, Referenz auf die Vokabel          |
-| Lernstatus     | TEXT    | Der Status (z. B. "neu", "gelernt", "wiederholen") |
-| Lernrate       | INTEGER | Häufigkeit, mit der die Vokabel wiederholt wird |
+| Spalte   | Typ     | Beschreibung                                       |
+|----------|---------|----------------------------------------------------|
+| id       | INTEGER | Primärschlüssel des Sets                           |
+| user_id  | INTEGER | Fremdschlüssel, verweist auf `users(id)`           |
+| name     | TEXT    | Name/Titel des Sets                                |
 
-## Lernsets
+---
 
-| Spalte         | Typ     | Beschreibung                           |
-|----------------|---------|----------------------------------------|
-| Set_id         | INTEGER | PK, eindeutige ID des Lernsets        |
-| Benutzer_id    | INTEGER | FK, Referenz auf den Benutzer         |
-| Set_name       | TEXT    | Name des Lernsets (z. B. "Englisch Level 1") |
-| Vokabel_ids    | TEXT    | Liste der Vokabel_ids, die zu diesem Set gehören |
+## flashcards (Karteikarten)
 
-## Notizen
+| Spalte         | Typ     | Beschreibung                                               |
+|----------------|---------|------------------------------------------------------------|
+| id             | INTEGER | Primärschlüssel der Karte                                  |
+| user_id        | INTEGER | Fremdschlüssel zu `users(id)`                              |
+| set_id         | INTEGER | Fremdschlüssel zu `sets(id)`                               |
+| question       | TEXT    | Vorderseite der Karte (Frage)                              |
+| answer         | TEXT    | Rückseite der Karte (Antwort)                              |
+| box            | INTEGER | Boxnummer für Spaced Repetition (Standard: 1)              |
+| last_reviewed  | DATE    | Datum der letzten Wiederholung                             |
 
-| Spalte         | Typ     | Beschreibung                           |
-|----------------|---------|----------------------------------------|
-| Notiz_id       | INTEGER | PK, eindeutige ID der Notiz           |
-| Benutzer_id    | INTEGER | FK, Referenz auf den Benutzer         |
-| Vokabel_id     | INTEGER | FK, Referenz auf die Vokabel          |
-| Notiz          | TEXT    | Benutzerdefinierte Notiz zu einer Vokabel |
+---
+
+## Hinweise
+
+- Alle Karten sind eindeutig einem Set **und** einem Benutzer zugeordnet.
+- Benutzerrollen werden aktuell nicht genutzt, könnten aber später für Adminfunktionen relevant sein.
+- Die Datenbank wird bei Bedarf manuell per `flask init-db` neu erzeugt.
+- Gespeichert wird sie unter: `instance/database.db`
+
+---
+
+## Beziehungen
+
+- **Ein Benutzer** kann mehrere Sets besitzen (`1:n`)
+- **Ein Set** gehört zu genau **einem Benutzer**
+- **Ein Set** enthält mehrere Karteikarten (`1:n`)
+- **Jede Karte** gehört zu genau **einem Set und einem Benutzer**
+
