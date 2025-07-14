@@ -7,7 +7,6 @@ nav_order: 5
 
 ## Görkems Ziele
 
-
 Vor meinem Auslandssemester in Taiwan hatte ich ehrlich gesagt wenig Interesse an Themen wie Projektentwicklung und dem IT-Teil meines Studiums. Aber inzwischen hat sich das Ganze komplett gewendet. Besonders der Workflow mit GitHub hat es mir angetan – das kollaborative Arbeiten und die Versionskontrolle finde ich super praktisch und möchte ich auf jeden Fall weiter vertiefen. Webanwendungen interessieren mich mittlerweile auch viel mehr, besonders weil ich schon oft überlegt habe, irgendwann mal eine eigene Website zu bauen. Was genau ich da machen möchte, weiß ich noch nicht, aber die Idee ist auf jeden Fall spannend.
 
 Ein großes Ziel von mir ist es, dieses vergleichbar große Projekt eigenständig mit Rouven umzusetzen und dabei zu lernen, wie man so etwas richtig aufzieht. Durch solche Erfahrungen kann ich nicht nur meine Fähigkeiten erweitern, sondern auch mein Selbstbewusstsein stärken. Auch wenn ich in Zukunft vermutlich mehr in Richtung Management gehe, will ich die technischen Skills nicht aus den Augen verlieren. Schließlich nutze ich den PC auch in meiner Freizeit für vieles und bilde mich ständig weiter, sei es in Software, Design oder anderen Tools.

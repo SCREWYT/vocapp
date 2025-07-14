@@ -23,8 +23,7 @@ Technisch sind wir weitgehend gut zurechtgekommen. Auch weil wir uns bewusst fü
 
 ## Strukturierte Zusammenarbeit und Kommunikation
 
-Gerade zu Beginn des Projekts haben wir uns regelmäßig digital getroffen – meist über Discord. Diese frühen Treffen waren hilfreich, um gemeinsam die Grundstruktur zu planen und direkt im Code zu arbeiten. Besonders das Teilen des Bildschirms war dabei praktisch, um uns gegenseitig schnell Dinge zu erklären oder Entscheidungen gemeinsam zu treffen. Oft hat Görkem die Dinge committed, nachdem wir Sie zusammen besprochen haben.
-
+Frühe Treffen waren hilfreich, um gemeinsam die Grundstruktur zu planen und direkt im Code zu arbeiten. 
 Im weiteren Verlauf – besonders ab Juni – wurde es jedoch schwieriger, uns zeitlich abzustimmen. Durch Arbeit, andere Abgaben und private Termine haben wir uns oft regelrecht verpasst: Immer wenn einer von uns Zeit hatte, war der andere gerade eingebunden – und umgekehrt. Dadurch fiel es schwer, kontinuierlich im Team an der App zu arbeiten, und vieles musste spontan oder asynchron gelöst werden - besonders im Endspurt.
 
 ## Teamarbeit und gemeinsame Arbeitsweise
