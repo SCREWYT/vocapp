@@ -37,7 +37,7 @@ nav_order: 10
 
 Die folgenden PDF-Dateien dokumentieren unsere Kommunikation mit ChatGPT zur Entwicklung und Unterstützung des Projekts:
 
-- [Download: Konversation 1 als PDF](/vocapp/00_assets/Konversation_1.pdf)
-- [Download: Konversation 2 als PDF](/vocapp/00_assets/Konversation_2.pdf)
-- [Download: Konversation 3 als PDF](/vocapp/00_assets/Konversation_3.pdf)
-- [Download: Konversation 4 als PDF](/vocapp/00_assets/Konversation_4.pdf)
+- [Download: Konversation 1 als PDF](https://screwyT.github.io/vocapp/00_assets/Konversation_1.pdf)
+- [Download: Konversation 1 als PDF](https://screwyT.github.io/vocapp/00_assets/Konversation_2.pdf)
+- [Download: Konversation 1 als PDF](https://screwyT.github.io/vocapp/00_assets/Konversation_3.pdf)
+- [Download: Konversation 1 als PDF](https://screwyT.github.io/vocapp/00_assets/Konversation_4.pdf)
