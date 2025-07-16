@@ -4,4 +4,4 @@ nav_order: 17
 ---
 
 
-[📄 Projektpräsentation](https://screwyt.github.io/vocapp/docs/00_assets/presentation_Web.pdf)
+[📄 Projektpräsentation](https://github.com/SCREWYT/vocapp/blob/main/docs/00_assets/presentation_web.pdf)
