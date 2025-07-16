@@ -4,24 +4,22 @@ parent: Teambeurteilung
 nav_order: 6
 ---
 
-
 # Peer review
-
 
 ## Rouven - Reflexion für Görkem
 
 ### My observation (Wahrnehmung)
 
 Grundsätzlich lief das Projekt okay, jedoch hatten wir beide unterschiedliche Herangehensweisen und auch Kommunikationsprobleme. 
-Es ist oft passiert, dass Dinge entstanden sind, die dann aber einfach verworfen wurden und somit einfach unnötig waren. Mir war es eigentlich wichtig, dass ich meinen Hauptteil selber programmiere, ohne die Hilfe von KI, jedoch hat das am Ende alles nicht funktioniert, da die Codes dann natürlich sehr unterschiedlich wurden. 
+Es ist oft passiert, dass Dinge entstanden sind, die dann aber einfach verworfen wurden und somit unnötig waren. Mir war es eigentlich wichtig, dass ich meinen Hauptteil selber programmiere, ohne die Hilfe von KI, jedoch hat das am Ende alles nicht funktioniert, da die Codes dann natürlich sehr unterschiedlich wurden. 
 
 ### Effect on me (Wirkung)
 
-Ich wurde oft vor vollendete Tatsachen gestellt und habe mich dadurch grundsätzlich sehr zurückgezogen. Des Weiteren waren viele Sachen, die ich gemacht habe scheinbar nicht ausreichen, weshalb ich einfach die Motivation verlorgen habe, klar ist das nicht die optimale Arbeitsweise, lässt sich aber nicht mehr ändern. 
+Ich wurde oft vor vollendete Tatsachen gestellt und habe mich dadurch grundsätzlich sehr zurückgezogen. Des Weiteren waren viele Sachen, die ich gemacht habe scheinbar nicht ausreichend, weshalb ich einfach die Motivation verloren habe. Klar ist das nicht die optimale Arbeitsweise, lässt sich aber nicht mehr ändern. 
 
 ### Tip for the future (Wunsch)
 
-Für kommende Projekte wäre es wünschenswert, wenn der Einstieg ins Projekt etwas früher und aktiver erfolgt. So könnten Arbeitsphasen besser strukturiert und Engpässe am Ende vermieden werden.Ebenfalls sollte man ganz am Anfang seine Ziele wirklich festlegen und eine klare Aufgabenverteilung organisieren. 
+Für kommende Projekte wäre es wünschenswert, wenn der Einstieg ins Projekt etwas früher und aktiver erfolgt. So könnten Arbeitsphasen besser strukturiert und Engpässe am Ende vermieden werden. Ebenfalls sollte man ganz am Anfang seine Ziele wirklich festlegen und eine klare Aufgabenverteilung organisieren. 
 
 ## Görkem - Reflexion für Rouven
 
@@ -31,7 +29,7 @@ Während des Projekts fiel es uns beiden schwer, eine gute Kommunikationsroutine
 
 ### Effect on me (Wirkung)
 
-Ich habe mich oft in der alleinigen Verantwortung für das Projekt gesehen – teilweise selbst gewählt, teilweise aus dem Gefühl heraus, dass es sonst nicht vorangeht. Das war zwar anstrengend, gut selbst organisieren kann ich mich aber sowieso. Gleichzeitig wurde mir bewusst, wie wichtig es ist, Aufgaben auch mal abzugeben und mehr Vertrauen ins Team zu setzen.
+Ich habe mich oft in der alleinigen Verantwortung für das Projekt gesehen – teilweise selbst gewählt, teilweise aus dem Gefühl heraus, dass es sonst nicht vorangeht. Das war zwar anstrengend, aber ich kann mich sowieso gut selbst organisieren. Gleichzeitig wurde mir bewusst, wie wichtig es ist, Aufgaben auch mal abzugeben und mehr Vertrauen ins Team zu setzen.
 
 ### Tip for the future (Wunsch)
 
