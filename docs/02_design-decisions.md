@@ -13,9 +13,9 @@ nav_order: 2
 {: toc }
 </details>
 
-# 01. Arbeitsaufteilung
+# 01. Der Anfang
 
-Wir trafen uns auf Discord und besprachen, was in den nächsten Schritten auf uns zukommt. Da es unser erstes Projekt dieser Art ist, haben wir uns vorerst an der Architektur und Struktur der Full-Stack-Webdev-GitHub-Pages von Prof. Dr. Eck orientiert: https://github.com/hwrberlin/fswd-app/tree/main.
+Da es unser erstes Projekt dieser Art ist, haben wir uns vorerst an der Architektur und Struktur der Full-Stack-Webdev-GitHub-Pages von Prof. Dr. Eck orientiert: https://github.com/hwrberlin/fswd-app/tree/main.
 
 ## Meta 
 - **Status:** abgeschlossen   
@@ -24,15 +24,15 @@ Wir trafen uns auf Discord und besprachen, was in den nächsten Schritten auf un
 
 ## Problemstellung  
 
-Wir kannten Discord bereits aus früheren Semestern, wünschten uns jedoch eine verlässlichere Möglichkeit zur Zusammenarbeit. Immerhin war es durchaus anstrengend, sich per Nachricht Code zuzusenden. 
+Wir kommunizierten hauptsächlich über Whatsapp, uns fehlte jedoch ein verlässliches Tool, um gemeinsam am selben Code zu arbeiten.
 
 ## Entscheidung  
 
-Durch den Dozenten und weitere Kurse wurde uns Git & GitHub nachdrücklich empfohlen. Obwohl wir uns bisher nur gelegentlich damit beschäftigt hatten, wurde schnell deutlich, wie leistungsstark dieses sogenannte "Versionskontrollsystem" ist. Es ermöglichte uns nämlich, Codeversionen nachzuverfolgen, Änderungen effizient zu verwalten und nahtlos im Team zusammenzuarbeiten. Daher wunderte es uns beide, dass uns nicht bereits in früheren Semestern dazu geraten wurde.
+Durch den Dozenten und weitere Kurse wurden uns Git & GitHub ausdrücklich empfohlen. Obwohl wir uns bisher nur gelegentlich damit beschäftigt hatten, wurde schnell deutlich, wie leistungsstark dieses sogenannte "Versionskontrollsystem" ist. Es ermöglichte uns nämlich, Codeversionen nachzuverfolgen, Änderungen effizient zu verwalten und nahtlos im Team zusammenzuarbeiten. Daher wunderte es uns beide, dass uns nicht bereits in früheren Semestern und Kursen dazu geraten wurde.
 
 ### Alternativen
 
-Diese gab es kaum – GitHub ist schließlich nahezu weltweiter Standard in der Softwareentwicklung.
+GitHub ist weltweiter Standard in der Softwareentwicklung - Alternativen kamen somit nicht infrage.
 
 ### Erste Idee
 Unsere erste Idee war, die Aufgaben klassisch z.B. in **Frontend** und **Backend** aufzuteilen. Im Gespräch wurde jedoch klar, dass der Backend-Anteil komplexer ist als der des Frontends. Statt diese Aufteilung weiterzuverfolgen, haben wir uns gemeinsam dazu entschieden, zunächst individuell zu arbeiten: Jede Person soll sich eigenständig mit allen Projektteilen vertraut machen, Visual Studio Code kennenlernen und das GitHub-Pages-Dokument des Dozenten durchgehen. Git & GitHub kennenzulernen war ebenfalls Teil davon.
@@ -62,9 +62,6 @@ Das hat unser Projekt deutlich sauberer und einfacher zu verwalten gemacht. Vor 
 __pycache__/
 
 # Ignoriere den Ordner für die virtuelle Umgebung
-virtualenvironment/
-
-# Ignoriere den Ordner für die virtuelle Umgebung
 venv/
 
 # Ignoriere den instance-Ordner (wird von Flask genutzt, z. B. für die SQLite-Datenbank)
@@ -73,8 +70,9 @@ instance/
 # Ignoriere den DS-Store, ist eine reine MacOS Geschichte
 .DS_Store
 
+
 ```
-> Das mit dem .DS_Store kam erst am 27.05.2025 dazu
+> Der Eintrag zum .DS_Store kam erst am 27.05.2025 dazu
 
 ## Problemstellung + Entscheidung: GitHub Pages 
 
@@ -148,13 +146,13 @@ SQLite passt gut zu unserem Vorhaben, die Daten lokal zu speichern. Wir brauchen
 
 ### Commit-Strategie
 
-Zu Beginn des Projekts habe ich bewusst wenige Commits durchgeführt, da ich davon ausging, dass es sinnvoller wäre, größere Fortschritte gesammelt zu committen. Die Meetings innerhalb des Teams fanden regulär statt, und wir haben kontinuierlich gearbeitet – jedoch wollte ich zunächst erst Inhalte sammeln, bevor ich sie zentral ins Repository einpflegte.
+Zu Beginn des Projekts haben wir bewusst wenige Commits durchgeführt, da wir davon ausgingen, dass das sinnvoller ist. 
 
 Während der Vorlesung wies uns Herr Eck jedoch darauf hin, dass es ratsam ist, auch kleinste Änderungen regelmäßig zu committen. Dies erleichtert das Zurückverfolgen von Fehlern und die Versionskontrolle erheblich. Diese Empfehlung haben wir daraufhin übernommen und unser Vorgehen entsprechend angepasst.
 
 ### Aufgabenverteilung
 
-Wir entschieden uns dazu, dass die Implementierung des **Login- und Registrierungssystems** von Rouven übernommen wird. Er hat sich um den Aufbau der Benutzerverwaltung gekümmert, während ich mich in den nächsten Schritten auf die Entwicklung des **Karteikarten-Algorithmus** konzentrieren werde. Das würde jedoch noch dauern, da ich in nächster Zeit mit anderen kurzfristigeren Uniprojekten beschäftigt war.
+Wir entschieden uns dazu, dass die Implementierung des **Login- und Registrierungssystems** von Rouven übernommen wird. Er hat sich um den Aufbau der Benutzerverwaltung gekümmert, während ich mich in den nächsten Schritten auf die Entwicklung des **Karteikarten-Algorithmus** konzentrieren werde.
 
 # 05. Login- und Registrierungsfunktion
 
@@ -165,7 +163,7 @@ Wir entschieden uns dazu, dass die Implementierung des **Login- und Registrierun
 
 # Problemstellung
 
-Die grundlegende Login- und Registrierungslogik für unsere App wurde von Rouven implementiert. Ziel war eine einfache, aber funktionale Benutzerverwaltung, mit der sich Nutzer:innen registrieren, anmelden und wieder ausloggen können.
+Die grundlegende Login- und Registrierungslogik für unsere App wurde von Rouven implementiert. Ziel war eine einfache, aber funktionale Benutzerverwaltung, mit der sich Nutzer registrieren, anmelden und wieder ausloggen können.
 
 Die Umsetzung erfolgt mit dem **Flask-Webframework** in Kombination mit einer **lokalen SQLite-Datenbank**. Passwörter werden dabei nicht im Klartext gespeichert, sondern sicher mit `generate_password_hash()` gehasht. Beim Login erfolgt die Überprüfung mit `check_password_hash()`.
 
@@ -178,10 +176,10 @@ Die Umsetzung erfolgt mit dem **Flask-Webframework** in Kombination mit einer **
   Nach erfolgreicher Authentifizierung erhalten Nutzende Zugriff auf geschützte Bereiche wie das Dashboard. Ungültige Anmeldedaten führen zu einer klaren Fehlermeldung.
 
 - **Dashboard (`/dashboard`)**  
-  Diese Seite ist nur für eingeloggte Benutzer:innen zugänglich und begrüßt sie mit einem personalisierten Hinweis. Ohne Login erfolgt ein automatischer Redirect zurück zur Anmeldeseite.
+  Diese Seite ist nur für eingeloggte Benutzer zugänglich und begrüßt sie mit einem personalisierten Hinweis. Ohne Login erfolgt ein automatischer Redirect zurück zur Anmeldeseite.
 
 - **Logout (`/logout`)**  
-  Durch das Ausloggen wird die aktuelle Sitzung beendet, und die Nutzer:in wird wieder zum Login weitergeleitet.
+  Durch das Ausloggen wird die aktuelle Sitzung beendet, und der Nutzer zum Login weitergeleitet.
 
 ## Aufgetretene Herausforderungen
 
@@ -204,7 +202,10 @@ Die gewählte Umsetzung erfüllt alle Anforderungen, die wir an unsere einfache 
 - ✅ Daten bleiben lokal gespeichert  
 - ✅ Einfach erweiterbar für weitere Funktionen  
 
-Durch die **frühe Implementierung** dieser Kernfunktion konnten wir sofort in einem realistischen Nutzungsszenario weiterentwickeln, z. B. personalisierte Inhalte speichern oder die spätere Einführung unterschiedlicher Nutzerrollen vorbereiten. Außerdem testeten wir die Datenbank, indem wir TestAccounts anlegten. 
->Nicht zu verwechseln mit den 'Admin Accounts' später
+Durch die frühe Implementierung dieser Kernfunktion konnten wir nahtlos weitere Funktionen entwickeln, die eine Anmeldung voraussetzten – etwa das Speichern und Abrufen von **benutzerspezifischen Karteikarten**. So war es möglich, die Lerninhalte auf einzelne Nutzer zuzuschneiden und personalisierte Fortschritte zu erfassen.
 
 ---
+
+Spaced Repetition Logik
+Raus mit den einzelnen Flashcards
+User sollen nicht die Vokabel eintragen sondern nur auswählen ob Ja oder Nein
