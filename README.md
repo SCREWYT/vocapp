@@ -140,5 +140,5 @@ Diese Arbeit wurde selbständig und eigenhändig erstellt. Die den benutzten Que
 
 Dieses Projekt wurde für den Kurs an der HWR Berlin entwickelt und steht unter der **MIT License**.  
 Die **MIT-Lizenz** erlaubt es, den Code frei zu verwenden, zu verändern und zu verbreiten, solange ein Hinweis auf die ursprünglichen Autoren erhalten bleibt.  
-Die vollständige Lizenz finden Sie in der Datei [`LICENSE.txt`](LICENSE.txt).
+Die vollständige Lizenz finden Sie in der Datei [`License.txt`](License.txt).
 
