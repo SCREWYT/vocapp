@@ -8,7 +8,7 @@ nav_order: 6
 # Peer review
 
 
-## Rouven - Reflexion 
+## Rouven - Reflexion für Görkem
 
 ### My observation (Wahrnehmung)
 
@@ -23,7 +23,7 @@ Ich wurde oft vor vollendete Tatsachen gestellt und habe mich dadurch grundsätz
 
 Für kommende Projekte wäre es wünschenswert, wenn der Einstieg ins Projekt etwas früher und aktiver erfolgt. So könnten Arbeitsphasen besser strukturiert und Engpässe am Ende vermieden werden.Ebenfalls sollte man ganz am Anfang seine Ziele wirklich festlegen und eine klare Aufgabenverteilung organisieren. 
 
-## Görkem - Reflexion 
+## Görkem - Reflexion für Rouven
 
 ### My observation (Wahrnehmung)
 
