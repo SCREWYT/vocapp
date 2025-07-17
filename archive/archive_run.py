@@ -1,3 +1,4 @@
+# created with help of this tutorial (https://www.youtube.com/watch?v=71EU8gnZqZQ&t=330s)
 # immer neues terminal öffnen dann: python3 -m venv venv
 # dann virtuelle umgebung aktivieren: source venv/bin/activate
 # dann abhängigkeiten istallieren: pip install -r requirements.txt
