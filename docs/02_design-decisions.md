@@ -18,8 +18,9 @@ nav_order: 2
 Da es unser erstes Projekt dieser Art ist, haben wir uns vorerst an der Architektur und Struktur der Full-Stack-Webdev-GitHub-Pages von Prof. Dr. Eck orientiert: https://github.com/hwrberlin/fswd-app/tree/main.
 
 ## Meta 
+
 - **Status:** abgeschlossen   
-- **Termin:** 17.04.2025
+- **Datum:** 17.04.2025
 - **Entscheidung getroffen von:** Görkem Ilias Istemi & Rouven Becker
 
 ## Problemstellung  
@@ -30,11 +31,11 @@ Wir kommunizierten hauptsächlich über Whatsapp, uns fehlte jedoch ein verläss
 
 Durch den Dozenten und weitere Kurse wurden uns Git & GitHub ausdrücklich empfohlen. Obwohl wir uns bisher nur gelegentlich damit beschäftigt hatten, wurde schnell deutlich, wie leistungsstark dieses sogenannte "Versionskontrollsystem" ist. Es ermöglichte uns nämlich, Codeversionen nachzuverfolgen, Änderungen effizient zu verwalten und nahtlos im Team zusammenzuarbeiten. Daher wunderte es uns beide, dass uns nicht bereits in früheren Semestern und Kursen dazu geraten wurde.
 
-### Alternativen
+## Alternativen
 
 GitHub ist weltweiter Standard in der Softwareentwicklung - Alternativen kamen somit nicht infrage.
 
-### Erste Idee
+## Erste Idee
 Unsere erste Idee war, die Aufgaben klassisch z.B. in **Frontend** und **Backend** aufzuteilen. Im Gespräch wurde jedoch klar, dass der Backend-Anteil komplexer ist als der des Frontends. Statt diese Aufteilung weiterzuverfolgen, haben wir uns gemeinsam dazu entschieden, zunächst individuell zu arbeiten: Jede Person soll sich eigenständig mit allen Projektteilen vertraut machen, Visual Studio Code kennenlernen und das GitHub-Pages-Dokument des Dozenten durchgehen. Git & GitHub kennenzulernen war ebenfalls Teil davon.
 
 Eine spätere Anpassung der Rollenverteilung bleibt weiterhin offen. Uns war es wichtig, dass jeder Bescheid weiß bevor wir uns zu einem späteren Zeitpunkt dann erneut treffen. <br>
@@ -44,8 +45,9 @@ Eine spätere Anpassung der Rollenverteilung bleibt weiterhin offen. Uns war es 
 # 02. Add .gitignore + Github Pages
 
 ## Meta 
+
 - **Status:** abgeschlossen   
-- **Termin:** 10.05.2025 - 14.05.2025
+- **Datum:** 10.05.2025 - 14.05.2025
 - **Entscheidung getroffen von:** Görkem Ilias Istemi
 
 
@@ -109,8 +111,9 @@ docs/
 # 03. Vergleich SQLite & Firebase
 
 ## Meta 
+
 - **Status:** abgeschlossen   
-- **Termin:** 15.05.2025
+- **Datum:** 15.05.2025
 - **Entscheidung getroffen von:** Görkem Ilias Istemi & Rouven Becker
 
 ## Problemstellung
@@ -125,7 +128,7 @@ SQLite passt gut zu unserem Vorhaben, die Daten lokal zu speichern. Wir brauchen
 
 >Implementiert haben wir die Datenbank jedoch erst später
 
-### Betrachtete Optionen
+## Betrachtete Optionen
 
 | **Merkmal**                | **SQLite**                          | **Firebase**                          | **Bewertung für unser Projekt (Vocapp)**                                |
 |---------------------------|-------------------------------------|---------------------------------------|-------------------------------------------------------------------------|
@@ -140,17 +143,18 @@ SQLite passt gut zu unserem Vorhaben, die Daten lokal zu speichern. Wir brauchen
 # 04. Gedankengänge zu getroffenen Entscheidungen
 
 ## Meta 
+
 - **Status:** abgeschlossen   
-- **Termin:** 18.05.2025
+- **Datum:** 18.05.2025
 - **Entscheidung getroffen von:** Görkem Ilias Istemi & Rouven Becker
 
-### Commit-Strategie
+## Commit-Strategie
 
 Zu Beginn des Projekts haben wir bewusst wenige Commits durchgeführt, da wir davon ausgingen, dass das sinnvoller ist. 
 
 Während der Vorlesung wies uns Herr Eck jedoch darauf hin, dass es ratsam ist, auch kleinste Änderungen regelmäßig zu committen. Dies erleichtert das Zurückverfolgen von Fehlern und die Versionskontrolle erheblich. Diese Empfehlung haben wir daraufhin übernommen und unser Vorgehen entsprechend angepasst.
 
-### Aufgabenverteilung
+## Aufgabenverteilung
 
 Wir entschieden uns dazu, dass die Implementierung des **Login- und Registrierungssystems** von Rouven übernommen wird. Er hat sich um den Aufbau der Benutzerverwaltung gekümmert, während ich mich in den nächsten Schritten auf die Entwicklung des **Karteikarten-Algorithmus** konzentrieren werde.
 
@@ -158,16 +162,16 @@ Wir entschieden uns dazu, dass die Implementierung des **Login- und Registrierun
 
 ## Meta 
 - **Status:** abgeschlossen   
-- **Termin:** 23.05.2025
+- **Datum:** 23.05.2025
 - **Entscheidung getroffen von:** Rouven Becker
 
-# Problemstellung
+## Problemstellung
 
 Die grundlegende Login- und Registrierungslogik für unsere App wurde von Rouven implementiert. Ziel war eine einfache, aber funktionale Benutzerverwaltung, mit der sich Nutzer registrieren, anmelden und wieder ausloggen können.
 
 Die Umsetzung erfolgt mit dem **Flask-Webframework** in Kombination mit einer **lokalen SQLite-Datenbank**. Passwörter werden dabei nicht im Klartext gespeichert, sondern sicher mit `generate_password_hash()` gehasht. Beim Login erfolgt die Überprüfung mit `check_password_hash()`.
 
-### Aufbau im Überblick
+## Aufbau im Überblick
 
 - **Registrierung (`/register`)**  
   Nutzende können sich mit einem eindeutigen Benutzernamen und Passwort registrieren. Die Eingaben werden validiert und anschließend in die Datenbank geschrieben. Bereits vorhandene Benutzernamen werden erkannt und abgefangen.
@@ -206,6 +210,177 @@ Durch die frühe Implementierung dieser Kernfunktion konnten wir nahtlos weitere
 
 ---
 
-Spaced Repetition Logik
-Raus mit den einzelnen Flashcards
-User sollen nicht die Vokabel eintragen sondern nur auswählen ob Ja oder Nein
+# 06. Verzicht auf Freitexteingabe bei Vokabelabfrage
+
+## Meta 
+
+- **Status:** abgeschlossen   
+- **Datum:** 13.06.2025
+- **Entscheidung getroffen von:** Görkem Ilias Istemi & Rouven Becker
+- Hier stand die **Idee** dafür fest, implementiert haben wir es später
+
+##  Problemstellung
+
+Im klassischen Vokabeltrainer wird die Übersetzung oft als Freitext erwartet. Das birgt jedoch Probleme:
+
+- Frust durch Rechtschreibfehler (Trotz richtiger Antwort)
+- Mehraufwand bei Auswertung und Validierung
+- Erhöhte Komplexität bei Mehrwortlösungen, Synonymen etc.
+
+## Entscheidung
+
+**Freitext wurde vollständig durch ein „Ja/Nein“-Prinzip ersetzt.**  
+Der Nutzer bewertet, ob er das Wort gewusst hätte („ja“) oder nicht („nein“).
+Man spart sich Fehler und muss nur zwei statt drei Buttons klicken, um weiterzukommen. Bei Freitext müsse man die Antwort erst eintippen, bestätigen und im Anschluss noch einmal bestätigen, dass man die nächste Karte sehen möchte.
+
+## Alternativen
+
+- **Tolerante Freitext-Eingabe** (1-2 Zeichen falsch noch ok)
+- **Multiple-Choice-Tests** statt aktiver Eingabe
+- **Spracherkennung**, z. B. „Sprich die Übersetzung“ (Hätte den Rahmen des Projektes gesprengt)
+
+## Fazit / Umsetzung
+
+Die Lösung ist minimalistisch, schnell und nutzerfreundlich.  
+Sie passt zum gewünschten Flow und reduziert Frustration. Auch ohne Freitexteingabe bleibt der aktive Erinnerungsprozess erhalten, da bewusstes Denken gefordert wird.
+
+---
+
+# 07. Spaced-Repetition-System
+
+## Meta 
+
+- **Status:** abgeschlossen   
+- **Datum:** 25.06.2025
+- **Entscheidung getroffen von:** Görkem Ilias Istemi & Rouven Becker basierend auf dem Feedback von Herr Eck
+
+## Problemstellung
+
+Einfaches Wiederholen aller Karteikarten in fester Reihenfolge führt oft zu wenig effektivem Lernen – es kommt kaum zur sinnvollen Wiederholung und es entsteht ein falsches Gefühl von Selbstsicherheit.
+→ Wie lässt sich smart wiederholen, um langfristiges Behalten zu fördern?
+
+## Entscheidung
+
+**Implementierung eines einfachen Spaced-Repetition-Algorithmus auf Empfehlung unseres Dozenten**:  
+- Es existieren drei Boxen (Box 1 | Box 2 | Box 3)
+- Jede Karte befindet sich anfangs in Box 1
+- „Ja“ erhöht das Level um eins → längere Pause bis zur nächsten Abfrage  
+- „Nein“ setzt das Level auf Box 1 zurück → baldige Wiederholung relativ zum eingeordneten Level aller anderen Karten
+
+## Mögliche Alternativen
+
+- **SM2-Algorithmus (Anki)**: komplexer, mathematisch genau, aber schwer zu debuggen  
+- **Zufällige Wiederholung ohne System**  
+- **Feste Lernsets** (z. B. „heute nur 10 Karten“)
+
+## Fazit / Umsetzung
+
+Das gewählte System ist einfach, verständlich und lässt sich gut mit Flask umsetzen. Es motiviert durch spürbaren Fortschritt und unterstützt sinnvolles Lernen – ohne externe Tools.
+
+---
+# 08. Navigationsleiste nur bei Login sichtbar
+
+## Meta 
+
+- **Status:** abgeschlossen   
+- **Datum:** 29.06.2025
+- **Entscheidung getroffen von:** Görkem Ilias Istemi
+
+## Problemstellung
+
+Die Navigationsleiste wurde zu Beginn auf jedem Screen angezeigt – ergibt aber wenig Sinn, wenn man noch nicht eingeloggt ist.
+ 
+## Das führte zu zwei Problemen:
+
+- Unlogisches Verhalten: z. B. Anzeige von Menüpunkten, obwohl der Nutzer nicht eingeloggt war  
+- Technische Fehler durch unerlaubte Zugriffsversuche auf geschützte Bereiche
+
+## Entscheidung
+
+Die Navigationsleiste wird **nur nach erfolgreichem Login eingeblendet**.  
+Nicht eingeloggte Nutzer sehen sie also nicht.
+
+## Mögliche Alternativen
+
+- Navbar immer sichtbar vielleicht mit ausgegrauten Links - stilistisch unschön
+- Dynamisches Anzeigen/Verstecken einzelner Menüpunkte je nach Route - jedoch ehrlicherweise zu viel Aufwand 
+- Soft-Redirects bei unautorisierten Zugriffen - vermutlich die plausibelste Alternative, wir haben uns jedoch für unsere Logik entschieden
+
+## Fazit / Umsetzung
+
+Die gewählte Lösung ist logisch nachvollziehbar und verbessert die User Experience.  
+Sie verhindert Navigationsfehler. Nur autorisierte Nutzer haben so Zugriff.
+
+---
+# 09. Verzicht auf Tabellenanzeige im Dashboard
+
+## Meta 
+
+- **Status:** abgeschlossen   
+- **Datum:** 29.06.2025
+- **Entscheidung getroffen von:** Görkem Ilias Istemi
+
+## Problemstellung
+
+Ursprünglich geplant war, dem Nutzer alle Karteikarten tabellarisch im Dashboard anzuzeigen.
+
+Folge:
+- Überladung des Dashboards ( Ebenfalls kein wirklicher Nutzen )
+- Technisch fehleranfällig ( Viele Tabellensets nebeneinander führten zu Übersichtsproblemen )
+
+## Entscheidung
+
+**Die Tabellenansicht wurde komplett entfernt.**  
+Das Dashboard zeigt nur noch die beiden Buttons zum Lernen oder zu den Sets.
+
+## Mögliche Alternativen
+
+- Suchfunktion mit Filter statt vollständiger Liste - Nettes Extra, jedoch sonst nicht zweckmäßig
+- Anzeige nur der heute zu lernenden Karten - Wäre höchstens - Keine wirkliche Alternative, wäre aber immerhin eine Überlegung für ein anderes Feature
+
+## Fazit / Umsetzung
+
+Die Entfernung stärkt den minimalistischen Gedanken der App. Nutzer brauchen besprochenes Feature schlichtweg nicht. So wird zusätzlich das Dashboard nicht überladen.
+
+---
+
+# 10. Routen entfernen, die wir nicht brauchten dank Karteisets
+
+- **Status:** abgeschlossen   
+- **Datum:** 02.07.2025
+- **Entscheidung getroffen von:** Görkem Ilias Istemi
+## Problemstellung
+
+Ursprünglich konnte man man einfach einzelne Karteikarten erstellen – ohne jegliche Gruppierung. Das führte zu wenig Übersicht im System, in dem Karten völlig wahllos existierten und keine Zuweisung hatten.
+
+## Entscheidung
+
+Wir haben uns entschieden, den Aufbau grundlegend zu überdenken und Karteisets einzuführen. Diese Sets sind thematische Sammlungen, die einem Nutzer gehören und unter denen beliebig viele Karten gespeichert werden können.
+
+## Alternativen
+
+Eine Option wäre gewesen, bei Einzelkarten zu bleiben und über Tags oder Filter nachträglich Struktur einzuführen. Diese Lösung wäre aber deutlich weniger praktikabel gewesen.
+
+## Fazit
+
+Mehrere unnötige Routen konnten wir entfernen. Das macht die App übersichtlicher und wartbarer. Innerhalb eines Sets können Karten einfach erstellt, bearbeitet und gelöscht werden – logisch gruppiert und direkt nutzerbezogen ohne unausgereifte Komplexität.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
